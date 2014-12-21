@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">انٹرنیٹ کیفے</string>
+    <string name="action_settings">ترتیبات</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">کھولیں دراج</string>
+    <string name="drawer_close">بند کریں دراج</string>
+    <string name="menu_item_allocation">ریکارڈ میں شامل کریں</string>
+    <string name="menu_item_change_allocation">ریکارڈ میں تبدیلی</string>
+    <string name="menu_item_list_current_allocations">تمام کمروں کی فہرست</string>
+    <string name="menu_item_peon_charges_add">نوکر سروس چارجز</string>
+    <string name="menu_item_report">رپورٹ</string>
+    <string name="menu_item_settings">ترتیبات</string>
+    <string name="menu_item_help">مدد کریں</string>
+    <string name="menu_item_about">بارے میں</string>
+    <string name="menu_item_import_export">درآمد اور برآمد</string>
+    <string name="menu_item_search">تلاش کریں</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
