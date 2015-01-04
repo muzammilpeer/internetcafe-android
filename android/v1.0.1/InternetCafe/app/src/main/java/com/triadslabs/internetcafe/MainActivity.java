@@ -4,185 +4,83 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.res.Configuration;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.triadslabs.internetcafe.adaptor.CustomDrawerAdapter;
-import com.triadslabs.internetcafe.fragment.FragmentOne;
-import com.triadslabs.internetcafe.fragment.FragmentThree;
-import com.triadslabs.internetcafe.fragment.FragmentTwo;
+import com.triadslabs.internetcafe.adaptor.GeneralArrayAdapter;
+import com.triadslabs.internetcafe.base.BaseActionBarActivity;
+import com.triadslabs.internetcafe.cell.DrawerCell;
 import com.triadslabs.internetcafe.model.DrawerItem;
+import com.triadslabs.internetcafe.listener.DrawerItemClickListener;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActionBarActivity {
 
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
+    private ListView mLeftDrawerList;
+    private ListView mRightDrawerList;
 
-    private CharSequence mDrawerTitle;
-    private CharSequence mTitle;
-    CustomDrawerAdapter adapter;
+    GeneralArrayAdapter leftAdapter;
+    GeneralArrayAdapter rightadapter;
 
-    List<DrawerItem> dataList;
+    List<DrawerItem> leftDataList;
+    List<DrawerItem> rightDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        // Initializing
-        dataList = new ArrayList<DrawerItem>();
-        mTitle = mDrawerTitle = getTitle();
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        generateLeftNavigationDrawerData();
+        generateRigtNavigationDrawerData();
+        //setup adaptor
+        leftAdapter = new GeneralArrayAdapter(this, R.layout.item_view_children, DrawerCell.class,
+                leftDataList);
+        rightadapter = new GeneralArrayAdapter(this, R.layout.item_view_children, DrawerCell.class,
+                rightDataList);
 
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-                GravityCompat.START);
+        mLeftDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mRightDrawerList = (ListView) findViewById(R.id.right_drawer);
 
-        // Add Drawer Item to dataList
-        dataList.add(new DrawerItem(getString(R.string.menu_item_search), R.drawable.ic_action_search));
-        dataList.add(new DrawerItem(getString(R.string.menu_item_allocation), R.drawable.ic_action_email));
-        dataList.add(new DrawerItem(getString(R.string.menu_item_change_allocation), R.drawable.ic_action_email));
-        dataList.add(new DrawerItem(getString(R.string.menu_item_list_current_allocations), R.drawable.ic_action_email));
-        dataList.add(new DrawerItem(getString(R.string.menu_item_peon_charges_add), R.drawable.ic_action_email));
-        dataList.add(new DrawerItem(getString(R.string.menu_item_import_export),
-                R.drawable.ic_action_import_export));
+        //set adaptor for listview
+        mLeftDrawerList.setAdapter(leftAdapter);
 
-        dataList.add(new DrawerItem(getString(R.string.menu_item_about), R.drawable.ic_action_about));
-        dataList.add(new DrawerItem(getString(R.string.menu_item_settings), R.drawable.ic_action_settings));
-        dataList.add(new DrawerItem(getString(R.string.menu_item_help), R.drawable.ic_action_help));
+        mRightDrawerList.setAdapter(rightadapter);
 
-        adapter = new CustomDrawerAdapter(this, R.layout.custom_drawer_item,
-                dataList);
-
-        mDrawerList.setAdapter(adapter);
-
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_drawer, R.string.drawer_open,
-                R.string.drawer_close) {
-            public void onDrawerClosed(View view) {
-                getSupportActionBar().setTitle(mTitle);
-                invalidateOptionsMenu(); // creates call to
-                // onPrepareOptionsMenu()
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(mDrawerTitle);
-                invalidateOptionsMenu(); // creates call to
-                // onPrepareOptionsMenu()
-            }
-        };
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mLeftDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        mRightDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         if (savedInstanceState == null) {
-            SelectItem(0);
+            SelectItem(0,this,leftDataList.get(0),mLeftDrawerList);
         }
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+    private void generateLeftNavigationDrawerData()
+    {
+        leftDataList = new ArrayList();
+        // Add Drawer Item to dataList
+        leftDataList.add(new DrawerItem(getString(R.string.menu_item_search), R.drawable.ic_action_search));
+        leftDataList.add(new DrawerItem(getString(R.string.menu_item_allocation), R.drawable.ic_action_email));
+
+        leftDataList.add(new DrawerItem(getString(R.string.menu_item_change_allocation), R.drawable.ic_action_email));
+        leftDataList.add(new DrawerItem(getString(R.string.menu_item_list_current_allocations), R.drawable.ic_action_email));
+        leftDataList.add(new DrawerItem(getString(R.string.menu_item_peon_charges_add), R.drawable.ic_action_email));
     }
 
-    public void SelectItem(int possition) {
-
-        Fragment fragment = null;
-        Bundle args = new Bundle();
-        switch (possition) {
-            case 0:
-                fragment = new FragmentOne();
-                args.putString(FragmentOne.ITEM_NAME, dataList.get(possition)
-                        .getItemName());
-                args.putInt(FragmentOne.IMAGE_RESOURCE_ID, dataList.get(possition)
-                        .getImgResID());
-                break;
-            case 1:
-                fragment = new FragmentTwo();
-                args.putString(FragmentTwo.ITEM_NAME, dataList.get(possition)
-                        .getItemName());
-                args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, dataList.get(possition)
-                        .getImgResID());
-                break;
-            case 2:
-                fragment = new FragmentThree();
-                args.putString(FragmentThree.ITEM_NAME, dataList.get(possition)
-                        .getItemName());
-                args.putInt(FragmentThree.IMAGE_RESOURCE_ID, dataList.get(possition)
-                        .getImgResID());
-                break;
-        }
-
-        fragment.setArguments(args);
-        FragmentManager frgManager = getFragmentManager();
-        frgManager.beginTransaction().replace(R.id.content_frame, fragment)
-                .commit();
-
-        mDrawerList.setItemChecked(possition, true);
-        setTitle(dataList.get(possition).getItemName());
-        mDrawerLayout.closeDrawer(mDrawerList);
-
+    private void generateRigtNavigationDrawerData()
+    {
+        rightDataList = new ArrayList();
+        // Add Drawer Item to dataList
+        rightDataList.add(new DrawerItem(getString(R.string.menu_item_import_export),
+                R.drawable.ic_action_import_export));
+        rightDataList.add(new DrawerItem(getString(R.string.menu_item_about), R.drawable.ic_action_about));
+        rightDataList.add(new DrawerItem(getString(R.string.menu_item_settings), R.drawable.ic_action_settings));
+        rightDataList.add(new DrawerItem(getString(R.string.menu_item_help), R.drawable.ic_action_help));
     }
 
-    @Override
-    public void setTitle(CharSequence title) {
-        mTitle = title;
-        getSupportActionBar().setTitle(mTitle);
+    public ListView getmLeftDrawerList() {
+        return mLeftDrawerList;
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggles
-        mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // The action bar home/up action should open or close the drawer.
-        // ActionBarDrawerToggle will take care of this.
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private class DrawerItemClickListener implements
-            ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-            SelectItem(position);
-
-        }
+    public ListView getmRightDrawerList() {
+        return mRightDrawerList;
     }
 
 }

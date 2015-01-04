@@ -4,7 +4,7 @@ public class DrawerItem {
 
 	String ItemName;
 	int imgResID;
-	
+
 	public DrawerItem(String itemName, int imgResID) {
 		super();
 		ItemName = itemName;
