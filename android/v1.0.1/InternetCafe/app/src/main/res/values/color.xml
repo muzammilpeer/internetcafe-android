@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lightwhite">#CCFFFFFF</color>
+    <color name="black">#000000</color>
+    <!-- News List item -->
+    <color name="news_datetime">#C6C6C6</color>
+    <color name="banner_color">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Action bar -->
+    <color name="action_bar_red">#de231e</color>
+    <color name="action_bar_mustard">#a4a55b</color>
+    <color name="action_bar_green">#2b6d4f</color>
+
+    <!-- Font Color  -->
+    <color name="font_color_green">#2B7051</color>
+
+    <color name="background_tab_pressed">#6633B5E5</color>
+</resources>

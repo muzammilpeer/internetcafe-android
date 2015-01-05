@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
+import com.triadslabs.internetcafe.actionbar.DrawerActionBarView;
 import com.triadslabs.internetcafe.adaptor.GeneralArrayAdapter;
 import com.triadslabs.internetcafe.base.BaseActionBarActivity;
 import com.triadslabs.internetcafe.cell.DrawerCell;
@@ -27,8 +29,11 @@ public class MainActivity extends BaseActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initializeCustomActionBar(R.layout.actionbar_header, DrawerActionBarView.class, new DrawerItem(getString(R.string.menu_item_search), R.drawable.ic_action_search));
+        showHideActionBar(true, true);
+
         generateLeftNavigationDrawerData();
-        generateRigtNavigationDrawerData();
+        generateRightNavigationDrawerData();
         //setup adaptor
         leftAdapter = new GeneralArrayAdapter(this, R.layout.item_view_children, DrawerCell.class,
                 leftDataList);
@@ -47,10 +52,22 @@ public class MainActivity extends BaseActionBarActivity {
         mRightDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         if (savedInstanceState == null) {
-            SelectItem(0,this,leftDataList.get(0),mLeftDrawerList);
+            SelectItem(0, this, leftDataList.get(0), mLeftDrawerList);
         }
 
     }
+
+    public void openCloseDrawer(boolean isOpen,boolean isLeftDrawer)
+    {
+        if (isLeftDrawer)
+        {
+         openCloseDrawer(isOpen,mLeftDrawerList);
+        }else {
+            openCloseDrawer(isOpen,mRightDrawerList);
+        }
+
+    }
+
 
     private void generateLeftNavigationDrawerData()
     {
@@ -64,7 +81,7 @@ public class MainActivity extends BaseActionBarActivity {
         leftDataList.add(new DrawerItem(getString(R.string.menu_item_peon_charges_add), R.drawable.ic_action_email));
     }
 
-    private void generateRigtNavigationDrawerData()
+    private void generateRightNavigationDrawerData()
     {
         rightDataList = new ArrayList();
         // Add Drawer Item to dataList

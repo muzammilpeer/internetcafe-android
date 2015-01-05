@@ -16,10 +16,17 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.internetcafe.actionbar.BaseActionBarView;
+import com.triadslabs.internetcafe.actionbar.DrawerActionBarView;
 import com.triadslabs.internetcafe.fragment.FragmentOne;
 import com.triadslabs.internetcafe.fragment.FragmentThree;
 import com.triadslabs.internetcafe.fragment.FragmentTwo;
 import com.triadslabs.internetcafe.model.DrawerItem;
+import com.triadslabs.internetcafe.utils.ReflectionUtils;
+
+import android.view.Gravity;
+
+import java.util.Objects;
 
 
 /**
@@ -32,21 +39,22 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
     protected ActionBarDrawerToggle mDrawerToggle;
     protected CharSequence mTitle;
 
+    private View actionbarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
         mTitle = getTitle();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-                GravityCompat.START|GravityCompat.END);
+                GravityCompat.START | GravityCompat.END);
 
-        //Drawer Listner
+//        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.right_drawer));
+//        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.left_drawer));
+
+        //Drawer Listener
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, R.string.drawer_open,
                 R.string.drawer_close) {
@@ -61,11 +69,70 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
                 invalidateOptionsMenu(); // creates call to
                 // onPrepareOptionsMenu()
             }
+
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
+    public void showHideActionBar(boolean isShow,boolean isCustom)
+    {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(isCustom ? false : isShow);
+        getSupportActionBar().setHomeButtonEnabled( isShow);
+        getSupportActionBar().setDisplayShowTitleEnabled(isCustom ? false : isShow);
+        getSupportActionBar().setDisplayShowCustomEnabled(isCustom);
+
+        if (isShow)
+            getSupportActionBar().show();
+        else
+            getSupportActionBar().hide();
+
+
+
+//        getSupportActionBar().setLogo(null); // forgot why this one but it helped
+//
+//        View homeIcon = findViewById(
+//                Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
+//                        android.R.id.home : R.id.abs__home);
+//        ((View) homeIcon.getParent()).setVisibility(View.GONE);
+//        ((View) homeIcon).setVisibility(View.GONE);
+    }
+
+    //overrite it's implementation in child class for listview reference
+    protected void openCloseDrawer(boolean isOpen,View listView)
+    {
+        if (isOpen)
+        {
+            mDrawerLayout.openDrawer(listView);
+        }else {
+            mDrawerLayout.closeDrawer(listView);
+        }
+    }
+
+    //actionbar customization
+    private Object setupCustomActionBar(int resourceID,Class customBarClass)
+    {
+        Object customBar = ReflectionUtils.instantiate(customBarClass);
+        View actionbarView = getLayoutInflater().inflate(resourceID,
+                null);
+        getSupportActionBar().setCustomView(null);
+        getSupportActionBar().setCustomView(actionbarView);
+        ReflectionUtils.callMethod("setupChildren",View.class,actionbarView,customBar.getClass(),customBar);
+        return customBar;
+    }
+
+    private void updateCustomActionBar(Object model,Object customBar)
+    {
+        ReflectionUtils.callMethod("updateActionBar",Object.class,model,customBar.getClass(),customBar);
+    }
+
+    public void initializeCustomActionBar(int rID,Class barClass,Object model)
+    {
+        Object customBar = setupCustomActionBar(rID,barClass);
+        updateCustomActionBar(model,customBar);
+    }
+
+    //selection
     public void SelectItem(int position,Context mcontext,Object model,ListView drawerListView) {
         if (model instanceof DrawerItem) {
             DrawerItem item = (DrawerItem)model;
@@ -116,7 +183,9 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        initializeCustomActionBar(R.layout.actionbar_header,DrawerActionBarView.class,new DrawerItem(getString(R.string.menu_item_search), R.drawable.ic_action_search) );
+
         return true;
     }
 
