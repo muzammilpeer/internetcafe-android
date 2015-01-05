@@ -44,6 +44,11 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (findViewById(android.R.id.home) != null) {
+            findViewById(android.R.id.home).setVisibility(View.GONE);
+        }
+
         setContentView(R.layout.activity_main);
 
         mTitle = getTitle();
@@ -77,25 +82,20 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
 
     public void showHideActionBar(boolean isShow,boolean isCustom)
     {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(isCustom ? false : isShow);
-        getSupportActionBar().setHomeButtonEnabled( isShow);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(isCustom ? false : isShow);
         getSupportActionBar().setDisplayShowTitleEnabled(isCustom ? false : isShow);
         getSupportActionBar().setDisplayShowCustomEnabled(isCustom);
+
+//        getSupportActionBar().setDisplayUseLogoEnabled(false);
+//        getSupportActionBar().setHomeAsUpIndicator(null);
+//        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.action_bar_green));
 
         if (isShow)
             getSupportActionBar().show();
         else
             getSupportActionBar().hide();
 
-
-
-//        getSupportActionBar().setLogo(null); // forgot why this one but it helped
-//
-//        View homeIcon = findViewById(
-//                Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-//                        android.R.id.home : R.id.abs__home);
-//        ((View) homeIcon.getParent()).setVisibility(View.GONE);
-//        ((View) homeIcon).setVisibility(View.GONE);
     }
 
     //overrite it's implementation in child class for listview reference
