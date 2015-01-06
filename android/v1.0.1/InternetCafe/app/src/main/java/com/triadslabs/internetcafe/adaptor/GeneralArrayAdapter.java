@@ -20,8 +20,22 @@ public  class GeneralArrayAdapter extends ArrayAdapter {
         this.classReference = clazzCell;
     }
 
+
+    // Spinner/DropDown getDropDownView() support
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        return getCustomView(position, convertView, parent);
+    }
+
+    // ListView and GridView  getView() support
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        return getCustomView(position, convertView, parent);
+    }
+
+    //Inflate in both cases of getview,getdropdownview
+    public View getCustomView(int position, View convertView, ViewGroup parent) {
+
         BaseItemView itemView = (BaseItemView)convertView;
         if (null == itemView) {
             //setupchilderns

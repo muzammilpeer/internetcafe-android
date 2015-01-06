@@ -7,4 +7,6 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
     <dimen name="multicolorbar_height">5dp</dimen>
+
+    <dimen name="row_heading_size">12sp</dimen>
 </resources>

@@ -16,4 +16,31 @@
     <color name="font_color_green">#2B7051</color>
 
     <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="purple">#FF00FF</color>
+    <color name="orange">#FF8A00</color>
+    <color name="back_color">#ff000000</color>
+    <color name="text_color">#ffffffff</color>
+    <color name="header_color">#ff555555</color>
+    <color name="dark_slate_gray">#2F4F4F</color>
+    <color name="gray_2">#AFAFAF</color>
+    <color name="gray_3">#716f6f</color>
+    <color name="gray_1">#C0C0C0</color>
+    <color name="trans_gray_1">#80000000</color>
+    <color name="blue">#0000FF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="selectedRowColor">#FDBB1C</color>
+    <color name="normalRowColor">#7B1928</color>
+    <color name="seperatorRowColor">#F23A3A</color>
+    <color name="lineUsernameColor">#Fdb813</color>
+    <color name="linePasswordColor">#92278F</color>
+    <color name="menuBackgroundColor">#C83522</color>
+    <color name="rowSplitterColor">#E1D2AE</color>
+    <color name="backgroundColor">#D6594E</color>
+    <color name="disablebuttonColor">#D5D5D5</color>
+    <color name="spinnerColor">#f5f5f5</color>
+    <color name="tab_indicator">#84202e</color>
+    <color name="tabselectedColor">#CCcd9b96</color>
 </resources>

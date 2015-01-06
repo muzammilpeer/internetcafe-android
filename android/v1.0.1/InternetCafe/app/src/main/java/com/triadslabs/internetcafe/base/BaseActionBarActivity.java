@@ -21,6 +21,7 @@ import com.triadslabs.internetcafe.actionbar.DrawerActionBarView;
 import com.triadslabs.internetcafe.fragment.FragmentOne;
 import com.triadslabs.internetcafe.fragment.FragmentThree;
 import com.triadslabs.internetcafe.fragment.FragmentTwo;
+import com.triadslabs.internetcafe.fragment.LoadMoreFragment;
 import com.triadslabs.internetcafe.model.DrawerItem;
 import com.triadslabs.internetcafe.utils.ReflectionUtils;
 
@@ -56,8 +57,8 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
                 GravityCompat.START | GravityCompat.END);
 
-//        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.right_drawer));
-//        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.left_drawer));
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.right_drawer));
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.left_drawer));
 
         //Drawer Listener
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -80,16 +81,23 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
+    public  void  lockLeftDrawer()
+    {
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.left_drawer));
+    }
+
+    public  void  lockRightDrawer()
+    {
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.right_drawer));
+    }
+
     public void showHideActionBar(boolean isShow,boolean isCustom)
     {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(isCustom ? false : isShow);
         getSupportActionBar().setHomeButtonEnabled(isCustom ? false : isShow);
         getSupportActionBar().setDisplayShowTitleEnabled(isCustom ? false : isShow);
         getSupportActionBar().setDisplayShowCustomEnabled(isCustom);
 
-//        getSupportActionBar().setDisplayUseLogoEnabled(false);
-//        getSupportActionBar().setHomeAsUpIndicator(null);
-//        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.action_bar_green));
 
         if (isShow)
             getSupportActionBar().show();
@@ -98,7 +106,7 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
 
     }
 
-    //overrite it's implementation in child class for listview reference
+    //override it's implementation in child class for listview reference
     protected void openCloseDrawer(boolean isOpen,View listView)
     {
         if (isOpen)
@@ -141,7 +149,7 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
             Bundle args = new Bundle();
             switch (position) {
                 case 0:
-                    fragment = new FragmentOne();
+                    fragment = new LoadMoreFragment();
                     args.putString(FragmentOne.ITEM_NAME, item
                             .getItemName());
                     args.putInt(FragmentOne.IMAGE_RESOURCE_ID, item
