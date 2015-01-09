@@ -16,18 +16,13 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.actionbar.BaseActionBarView;
-import com.triadslabs.internetcafe.actionbar.DrawerActionBarView;
 import com.triadslabs.internetcafe.fragment.FragmentOne;
 import com.triadslabs.internetcafe.fragment.FragmentThree;
 import com.triadslabs.internetcafe.fragment.FragmentTwo;
 import com.triadslabs.internetcafe.fragment.LoadMoreFragment;
+import com.triadslabs.internetcafe.fragment.ScheduleFragment;
 import com.triadslabs.internetcafe.model.DrawerItem;
 import com.triadslabs.internetcafe.utils.ReflectionUtils;
-
-import android.view.Gravity;
-
-import java.util.Objects;
 
 
 /**
@@ -156,7 +151,7 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
                             .getImgResID());
                     break;
                 case 1:
-                    fragment = new FragmentTwo();
+                    fragment = new ScheduleFragment();
                     args.putString(FragmentTwo.ITEM_NAME, item
                             .getItemName());
                     args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, item
@@ -213,6 +208,7 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        setContentView(R.layout.myLayout);
         // Pass any configuration change to the drawer toggles
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
