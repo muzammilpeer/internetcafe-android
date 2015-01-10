@@ -1,6 +1,6 @@
 package com.triadslabs.internetcafe.model;
 
-public class DrawerItem {
+public class DrawerItem extends BaseItem {
 
 	String ItemName;
 	int imgResID;

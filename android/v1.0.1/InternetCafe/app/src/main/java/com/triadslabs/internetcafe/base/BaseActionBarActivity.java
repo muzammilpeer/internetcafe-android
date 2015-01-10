@@ -208,7 +208,7 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        setContentView(R.layout.myLayout);
+        //setContentView(R.layout.myLayout);
         // Pass any configuration change to the drawer toggles
         mDrawerToggle.onConfigurationChanged(newConfig);
     }

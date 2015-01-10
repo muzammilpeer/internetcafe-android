@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.internetcafe.cell.BaseCell;
 import com.triadslabs.internetcafe.utils.ReflectionUtils;
 
 
@@ -15,21 +16,21 @@ import com.triadslabs.internetcafe.utils.ReflectionUtils;
  * Created by MuzammilPeer on 1/4/2015.
  */
 public class BaseItemView extends RelativeLayout {
-
-    //It's your CellDesign Resource ID which you will pass on adaptor creation
-    private static int layoutResID;
-
     //bCell is the reference of Your Cell object e.g (DrawerCell)
-    private Object bCell;
-    //classReference
-    private static Class classReference;
+    public BaseCell bCell;
 
     //View inflate class method
     public static BaseItemView inflate(ViewGroup parent,int layoutResourceID,Class cell) {
-        BaseItemView.layoutResID = layoutResourceID;
-        classReference = cell;
+        //create class object and initiate baseview from xml
         BaseItemView itemView = (BaseItemView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_view, parent, false);
+
+        //Generate Childs views and attach them to parent view of cellview
+        View baseView = LayoutInflater.from(parent.getContext()).inflate(layoutResourceID , itemView, true);
+        //Cell Reference and cell views setup is called to fetch views from xml
+        itemView.bCell = (BaseCell)ReflectionUtils.instantiate(cell);
+        itemView.bCell.setupChildren(baseView);
+
         return itemView;
     }
 
@@ -42,17 +43,13 @@ public class BaseItemView extends RelativeLayout {
         this(context, attrs, 0);
     }
 
-    //Constructor which will create viewHolder for once using reflection
+    //Constructor called after inflating first
     public BaseItemView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
-        View baseView = LayoutInflater.from(context).inflate(BaseItemView.layoutResID , this, true);
-        bCell = ReflectionUtils.instantiate(BaseItemView.classReference);
-        ReflectionUtils.callMethod("setupChildren",View.class,baseView,BaseItemView.classReference,bCell);
     }
 
-    //set item will call updatecell() method in your cell class using reflection
+    //set item will call updatecell()
     public void setItem(Object item) {
-        ReflectionUtils.callMethod("updateCell",Object.class,item,BaseItemView.classReference,bCell);
+        bCell.updateCell(item);
     }
 }

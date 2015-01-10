@@ -11,4 +11,6 @@ abstract public class BaseCell {
 
     abstract public void setupChildren(View view);
     abstract public void updateCell(Object model);
+
+//    abstract public BaseCell initialize();
 }

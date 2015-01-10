@@ -13,7 +13,16 @@ import com.triadslabs.internetcafe.model.DrawerItem;
 public class DrawerCell extends BaseCell {
 
     TextView ItemName;
+
+//    @Override
+//    public BaseCell initialize() {
+//
+//        return new DrawerCell();
+//    }
+
     ImageView icon;
+
+    //public BaseCell initialize(Class clazzname);
 
 
     @Override
