@@ -27,8 +27,11 @@ public class DashboardFragment extends BaseFragment implements TabListener {
 
     private ListView lvDashboard;
     private GeneralArrayAdapter adDashboard;
+
     private List<DashboardItem> localDataSource;
 
+    private List<DashboardItem> reserveDataSource;
+    private List<DashboardItem> freeDataSource;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +55,9 @@ public class DashboardFragment extends BaseFragment implements TabListener {
         setupActionBarTabs();
         generateDataSource();
 
+        localDataSource = new ArrayList<DashboardItem>();
+        localDataSource.addAll(this.reserveDataSource);
+
         adDashboard = new GeneralArrayAdapter(getContext(),R.layout.cell_dashboard,localDataSource, DashboardCell.class);
         lvDashboard.setAdapter(adDashboard);
     }
@@ -63,12 +69,21 @@ public class DashboardFragment extends BaseFragment implements TabListener {
 
     private void generateDataSource()
     {
-        localDataSource = new ArrayList<DashboardItem>();
+        ArrayList<DashboardItem> tempDataSource = new ArrayList<DashboardItem>();
 
-        for (int i=0;i<50;i++) {
-            localDataSource.add(new DashboardItem("R#"+i,"Test Client","Camera","12:"+i+" AM","30","1:00 PM"));
+        for (int i=0;i<20;i++) {
+            tempDataSource.add(new DashboardItem("R#"+i,"Free Test Client","Camera","12:"+i+" AM","30","1:00 PM"));
         }
 
+        freeDataSource = new ArrayList<DashboardItem>(tempDataSource);
+        tempDataSource.clear();
+
+        for (int i=0;i<50;i++) {
+            tempDataSource.add(new DashboardItem("R#"+i,"Reserve Test Client","Camera","12:"+i+" AM","30","1:00 PM"));
+        }
+        reserveDataSource = new ArrayList<DashboardItem>(tempDataSource);
+
+        tempDataSource.clear();
     }
 
     private void setupActionBarTabs() {
@@ -96,6 +111,24 @@ public class DashboardFragment extends BaseFragment implements TabListener {
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction) {
 
+        if (this.localDataSource != null) {
+            switch (tab.getPosition())
+            {
+                case 0 : {
+                    this.localDataSource.clear();
+                    this.localDataSource.addAll(reserveDataSource);
+                }break;
+                case 1 : {
+                    this.localDataSource.clear();
+                    this.localDataSource.addAll(freeDataSource);
+                }break;
+                default: {
+
+                }break;
+            }
+            adDashboard.notifyDataSetChanged();
+
+        }
     }
 
     @Override

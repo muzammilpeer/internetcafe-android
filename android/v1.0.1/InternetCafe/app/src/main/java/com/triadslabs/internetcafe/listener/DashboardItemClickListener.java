@@ -26,12 +26,13 @@ public class DashboardItemClickListener implements
         if (model instanceof DashboardItem) {
             DashboardItem item = (DashboardItem) model;
             if (view.getContext() instanceof MainActivity) {
-                MainActivity activity = ((MainActivity) view.getContext());
+                BaseActivity activity = ((BaseActivity) view.getContext());
                 DashboardFragment dashboard = (DashboardFragment)getActiveFragment(activity) != null ? (DashboardFragment)getActiveFragment(activity) : new DashboardFragment() ;
                 dashboard.replaceFragment(new ReservationFragment());
             }
         }
     }
+
     public BaseFragment getActiveFragment(BaseActivity activity) {
         return (BaseFragment)activity.getSupportFragmentManager().getFragments().get(0);
     }

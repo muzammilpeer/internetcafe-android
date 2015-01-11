@@ -2,6 +2,7 @@ package com.triadslabs.internetcafe.base;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 
 import com.triadslabs.internetcafe.R;
@@ -23,6 +24,7 @@ abstract public class BaseActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         showHideActionBar(false,false);
+        showHideTabs(false);
     }
 
     public void showHideActionBar(boolean isShow,boolean isCustom)
@@ -54,5 +56,9 @@ abstract public class BaseActivity extends ActionBarActivity {
     {
         android.support.v4.app.FragmentManager frgManager = this.getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+    }
+
+    public void showHideTabs(boolean isShow) {
+        getSupportActionBar().setNavigationMode(isShow ? ActionBar.NAVIGATION_MODE_TABS : ActionBar.NAVIGATION_MODE_STANDARD);
     }
 }
