@@ -16,4 +16,23 @@
     <string name="menu_item_import_export">Import and Export</string>
     <string name="menu_item_search">Search</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="or"> OR </string>
+    <string name="client_name">Name :</string>
+    <string name="client_amount">Amount :</string>
+    <string name="client_checkin">Check In :</string>
+    <string name="client_checkout">Check Out :</string>
+    <string name="client_assets">Accessories :</string>
+    <string name="client_security">Security Deposit :</string>
+    <string name="client_cancel">Cancel</string>
+    <string name="client_update">Update</string>
+    <string name="client_delete">Delete</string>
+
+    <string name="asset_usb">USB</string>
+    <string name="asset_camera">Camera</string>
+    <string name="asset_cardreader">Card Reader</string>
+    <string name="asset_nic">CNIC</string>
+    <string name="asset_deposit">Deposit Amount</string>
+    <string name="asset_desc">Description</string>
+
 </resources>

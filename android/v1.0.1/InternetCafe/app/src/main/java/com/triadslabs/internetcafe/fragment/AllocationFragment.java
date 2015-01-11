@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.internetcafe.base.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +19,7 @@ import com.triadslabs.internetcafe.R;
  * Use the {@link AllocationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AllocationFragment extends Fragment {
+public class AllocationFragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +60,8 @@ public class AllocationFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        showHideTabs(false);
     }
 
     @Override

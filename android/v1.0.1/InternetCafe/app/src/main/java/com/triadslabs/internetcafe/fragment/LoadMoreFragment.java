@@ -46,6 +46,7 @@ public class LoadMoreFragment extends BaseFragment{
         initViews(view);
         initObjects();
         initListener();
+        showHideTabs(false);
 
         return view;
     }

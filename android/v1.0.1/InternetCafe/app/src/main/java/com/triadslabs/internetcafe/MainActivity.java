@@ -1,8 +1,5 @@
 package com.triadslabs.internetcafe;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -11,6 +8,7 @@ import com.triadslabs.internetcafe.actionbar.DrawerActionBarView;
 import com.triadslabs.internetcafe.adaptor.ExtendedGeneralArrayAdapter;
 import com.triadslabs.internetcafe.adaptor.GeneralArrayAdapter;
 import com.triadslabs.internetcafe.base.BaseActionBarActivity;
+import com.triadslabs.internetcafe.base.BaseFragment;
 import com.triadslabs.internetcafe.cell.DrawerCell;
 import com.triadslabs.internetcafe.fragment.DashboardFragment;
 import com.triadslabs.internetcafe.fragment.FragmentOne;
@@ -132,16 +130,28 @@ public class MainActivity extends BaseActionBarActivity {
     }
 
 
+    private DrawerItem getDrawerItem(Object item)
+    {
+        if (item instanceof DrawerItem)
+        {
+            return (DrawerItem)item;
+        }else if (item instanceof ExtendedItem)
+        {
+            return (DrawerItem)((ExtendedItem) item).getItem();
+        }
+
+        return null;
+    }
     //selection
     public void SelectItem(int position,Context mcontext,Object model,ListView drawerListView) {
-        if (model instanceof DrawerItem) {
-            DrawerItem item = (DrawerItem)model;
+            DrawerItem item = getDrawerItem(model);
+            if (item instanceof DrawerItem) {
 
-            Fragment fragment = null;
+            BaseFragment fragment = null;
             Bundle args = new Bundle();
             switch (position) {
                 case 0:
-                    fragment = new DashboardFragment();
+                    fragment =  new DashboardFragment();
                     args.putString(FragmentOne.ITEM_NAME, item
                             .getItemName());
                     args.putInt(FragmentOne.IMAGE_RESOURCE_ID, item
@@ -170,9 +180,8 @@ public class MainActivity extends BaseActionBarActivity {
             }
 
             fragment.setArguments(args);
-            FragmentManager frgManager = ((Activity)mcontext).getFragmentManager();
-            frgManager.beginTransaction().replace(R.id.content_frame, fragment)
-                    .commit();
+
+            replaceFragment(fragment);
 
             drawerListView.setItemChecked(position, true);
 

@@ -1,6 +1,5 @@
 package com.triadslabs.internetcafe.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.internetcafe.base.BaseFragment;
 
-public class FragmentOne extends Fragment {
+public class FragmentOne extends BaseFragment {
 
 	ImageView ivIcon;
 	TextView tvItemName;
@@ -35,7 +35,10 @@ public class FragmentOne extends Fragment {
 		tvItemName.setText(getArguments().getString(ITEM_NAME));
 		ivIcon.setImageDrawable(view.getResources().getDrawable(
 				getArguments().getInt(IMAGE_RESOURCE_ID)));
-		return view;
+
+        showHideTabs(false);
+
+        return view;
 	}
 
 }

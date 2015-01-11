@@ -14,6 +14,7 @@ import com.triadslabs.internetcafe.R;
 import com.triadslabs.internetcafe.adaptor.GeneralArrayAdapter;
 import com.triadslabs.internetcafe.base.BaseFragment;
 import com.triadslabs.internetcafe.cell.DashboardCell;
+import com.triadslabs.internetcafe.listener.DashboardItemClickListener;
 import com.triadslabs.internetcafe.model.DashboardItem;
 
 import java.util.ArrayList;
@@ -57,12 +58,13 @@ public class DashboardFragment extends BaseFragment implements TabListener {
 
     private  void initListener()
     {
-
+        lvDashboard.setOnItemClickListener(new DashboardItemClickListener());
     }
 
     private void generateDataSource()
     {
         localDataSource = new ArrayList<DashboardItem>();
+
         for (int i=0;i<50;i++) {
             localDataSource.add(new DashboardItem("R#"+i,"Test Client","Camera","12:"+i+" AM","30","1:00 PM"));
         }
@@ -71,8 +73,7 @@ public class DashboardFragment extends BaseFragment implements TabListener {
 
     private void setupActionBarTabs() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayShowTitleEnabled(true);
+        showHideTabs(true);
         actionBar.removeAllTabs();
 
         Tab tab1 = actionBar

@@ -50,4 +50,9 @@ abstract public class BaseActivity extends ActionBarActivity {
 //        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.right_drawer));
 //    }
 
+    public void replaceFragment(BaseFragment fragment)
+    {
+        android.support.v4.app.FragmentManager frgManager = this.getSupportFragmentManager();
+        frgManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+    }
 }
