@@ -1,41 +1,31 @@
 package com.triadslabs.internetcafe.base;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.fragment.FragmentOne;
-import com.triadslabs.internetcafe.fragment.FragmentThree;
-import com.triadslabs.internetcafe.fragment.FragmentTwo;
-import com.triadslabs.internetcafe.fragment.LoadMoreFragment;
-import com.triadslabs.internetcafe.fragment.ScheduleFragment;
-import com.triadslabs.internetcafe.model.DrawerItem;
 import com.triadslabs.internetcafe.utils.ReflectionUtils;
 
 
 /**
  * Created by MuzammilPeer on 1/4/2015.
  */
-abstract public class BaseActionBarActivity  extends ActionBarActivity
+abstract public class BaseActionBarActivity  extends BaseActivity
 {
 
     private DrawerLayout mDrawerLayout;
     protected ActionBarDrawerToggle mDrawerToggle;
     protected CharSequence mTitle;
 
-    private View actionbarView;
+    //private View actionbarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +35,15 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
             findViewById(android.R.id.home).setVisibility(View.GONE);
         }
 
-        setContentView(R.layout.activity_main);
-
         mTitle = getTitle();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
                 GravityCompat.START | GravityCompat.END);
 
-        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.right_drawer));
-        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.left_drawer));
+        lockLeftDrawer();
+        lockRightDrawer();
+//        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.right_drawer));
+//        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.left_drawer));
 
         //Drawer Listener
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -78,28 +68,14 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
 
     public  void  lockLeftDrawer()
     {
-        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.left_drawer));
+        lockUnlockDrawer(false,R.id.left_drawer,mDrawerLayout);
     }
 
     public  void  lockRightDrawer()
     {
-        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, findViewById(R.id.right_drawer));
+        lockUnlockDrawer(false,R.id.right_drawer,mDrawerLayout);
     }
 
-    public void showHideActionBar(boolean isShow,boolean isCustom)
-    {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(isCustom ? false : isShow);
-        getSupportActionBar().setHomeButtonEnabled(isCustom ? false : isShow);
-        getSupportActionBar().setDisplayShowTitleEnabled(isCustom ? false : isShow);
-        getSupportActionBar().setDisplayShowCustomEnabled(isCustom);
-
-
-        if (isShow)
-            getSupportActionBar().show();
-        else
-            getSupportActionBar().hide();
-
-    }
 
     //override it's implementation in child class for listview reference
     protected void openCloseDrawer(boolean isOpen,View listView)
@@ -135,53 +111,7 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
         updateCustomActionBar(model,customBar);
     }
 
-    //selection
-    public void SelectItem(int position,Context mcontext,Object model,ListView drawerListView) {
-        if (model instanceof DrawerItem) {
-            DrawerItem item = (DrawerItem)model;
 
-            Fragment fragment = null;
-            Bundle args = new Bundle();
-            switch (position) {
-                case 0:
-                    fragment = new LoadMoreFragment();
-                    args.putString(FragmentOne.ITEM_NAME, item
-                            .getItemName());
-                    args.putInt(FragmentOne.IMAGE_RESOURCE_ID, item
-                            .getImgResID());
-                    break;
-                case 1:
-                    fragment = new ScheduleFragment();
-                    args.putString(FragmentTwo.ITEM_NAME, item
-                            .getItemName());
-                    args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, item
-                            .getImgResID());
-                    break;
-                case 2:
-                    fragment = new FragmentThree();
-                    args.putString(FragmentThree.ITEM_NAME, item
-                            .getItemName());
-                    args.putInt(FragmentThree.IMAGE_RESOURCE_ID, item
-                            .getImgResID());
-                    break;
-                default:
-                    fragment = new FragmentThree();
-                    args.putString(FragmentOne.ITEM_NAME, item
-                            .getItemName());
-                    args.putInt(FragmentThree.IMAGE_RESOURCE_ID, item
-                            .getImgResID());
-            }
-
-            fragment.setArguments(args);
-            FragmentManager frgManager = ((Activity)mcontext).getFragmentManager();
-            frgManager.beginTransaction().replace(R.id.content_frame, fragment)
-                    .commit();
-
-            drawerListView.setItemChecked(position, true);
-            super.setTitle(item.getItemName());
-            mDrawerLayout.closeDrawer(drawerListView);
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -223,4 +153,32 @@ abstract public class BaseActionBarActivity  extends ActionBarActivity
 
         return false;
     }
+
+    protected void SelectItem(int position,Context mcontext,Object model,ListView drawerListView)
+    {
+        mDrawerLayout.closeDrawer(drawerListView);
+    }
+//    public DrawerLayout getmDrawerLayout() {
+//        return mDrawerLayout;
+//    }
+//
+//    public void setmDrawerLayout(DrawerLayout mDrawerLayout) {
+//        this.mDrawerLayout = mDrawerLayout;
+//    }
+//
+//    public ActionBarDrawerToggle getmDrawerToggle() {
+//        return mDrawerToggle;
+//    }
+//
+//    public void setmDrawerToggle(ActionBarDrawerToggle mDrawerToggle) {
+//        this.mDrawerToggle = mDrawerToggle;
+//    }
+//
+//    public CharSequence getmTitle() {
+//        return mTitle;
+//    }
+//
+//    public void setmTitle(CharSequence mTitle) {
+//        this.mTitle = mTitle;
+//    }
 }

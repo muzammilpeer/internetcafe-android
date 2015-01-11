@@ -14,7 +14,7 @@ public  class GeneralArrayAdapter extends ArrayAdapter {
     int layoutResID;
     Class classReference;
 
-    public GeneralArrayAdapter(Context c, int layoutResourceID, Class clazzCell, List items) {
+    public GeneralArrayAdapter(Context c, int layoutResourceID, List items,Class clazzCell) {
         super(c, layoutResourceID, items);
         this.layoutResID = layoutResourceID;
         this.classReference = clazzCell;

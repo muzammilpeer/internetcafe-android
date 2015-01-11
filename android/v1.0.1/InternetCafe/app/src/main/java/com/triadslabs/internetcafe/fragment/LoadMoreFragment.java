@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.triadslabs.internetcafe.R;
 import com.triadslabs.internetcafe.adaptor.GeneralArrayAdapter;
@@ -55,8 +53,7 @@ public class LoadMoreFragment extends BaseFragment{
     private void initViews(View view)
     {
         lmListView = (LoadMoreListView)view.findViewById(R.id.lmListView);
-        lmListAdaptor = new GeneralArrayAdapter(view.getContext(), R.layout.item_view_children, DrawerCell.class,
-                localDataSource);
+        lmListAdaptor = new GeneralArrayAdapter(view.getContext(), R.layout.item_view_children, localDataSource,DrawerCell.class);
 
     }
 

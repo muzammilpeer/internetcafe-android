@@ -40,6 +40,8 @@ public class ScheduleFragment extends BaseFragment {
 
         initViews(rootView);
         initListener();
+
+        showHideTabs(false);
         return rootView;
     }
 

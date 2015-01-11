@@ -1,5 +1,9 @@
 package com.triadslabs.internetcafe;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -8,6 +12,12 @@ import com.triadslabs.internetcafe.adaptor.ExtendedGeneralArrayAdapter;
 import com.triadslabs.internetcafe.adaptor.GeneralArrayAdapter;
 import com.triadslabs.internetcafe.base.BaseActionBarActivity;
 import com.triadslabs.internetcafe.cell.DrawerCell;
+import com.triadslabs.internetcafe.fragment.DashboardFragment;
+import com.triadslabs.internetcafe.fragment.FragmentOne;
+import com.triadslabs.internetcafe.fragment.FragmentThree;
+import com.triadslabs.internetcafe.fragment.FragmentTwo;
+import com.triadslabs.internetcafe.fragment.LoadMoreFragment;
+import com.triadslabs.internetcafe.fragment.ScheduleFragment;
 import com.triadslabs.internetcafe.listener.DrawerItemClickListener;
 import com.triadslabs.internetcafe.model.DrawerItem;
 import com.triadslabs.internetcafe.model.ExtendedItem;
@@ -46,8 +56,7 @@ public class MainActivity extends BaseActionBarActivity {
         fancyAdaptor = new ExtendedGeneralArrayAdapter(this,leftDataList);
 
 
-        rightadapter = new GeneralArrayAdapter(this, R.layout.item_view_children, DrawerCell.class,
-                rightDataList);
+        rightadapter = new GeneralArrayAdapter(this, R.layout.item_view_children, rightDataList,DrawerCell.class);
 
         mLeftDrawerList = (ListView) findViewById(R.id.left_drawer);
         mRightDrawerList = (ListView) findViewById(R.id.right_drawer);
@@ -122,4 +131,54 @@ public class MainActivity extends BaseActionBarActivity {
         return mRightDrawerList;
     }
 
+
+    //selection
+    public void SelectItem(int position,Context mcontext,Object model,ListView drawerListView) {
+        if (model instanceof DrawerItem) {
+            DrawerItem item = (DrawerItem)model;
+
+            Fragment fragment = null;
+            Bundle args = new Bundle();
+            switch (position) {
+                case 0:
+                    fragment = new DashboardFragment();
+                    args.putString(FragmentOne.ITEM_NAME, item
+                            .getItemName());
+                    args.putInt(FragmentOne.IMAGE_RESOURCE_ID, item
+                            .getImgResID());
+                    break;
+                case 1:
+                    fragment = new ScheduleFragment();
+                    args.putString(FragmentTwo.ITEM_NAME, item
+                            .getItemName());
+                    args.putInt(FragmentTwo.IMAGE_RESOURCE_ID, item
+                            .getImgResID());
+                    break;
+                case 2:
+                    fragment = new LoadMoreFragment();
+                    args.putString(FragmentThree.ITEM_NAME, item
+                            .getItemName());
+                    args.putInt(FragmentThree.IMAGE_RESOURCE_ID, item
+                            .getImgResID());
+                    break;
+                default:
+                    fragment = new FragmentThree();
+                    args.putString(FragmentOne.ITEM_NAME, item
+                            .getItemName());
+                    args.putInt(FragmentThree.IMAGE_RESOURCE_ID, item
+                            .getImgResID());
+            }
+
+            fragment.setArguments(args);
+            FragmentManager frgManager = ((Activity)mcontext).getFragmentManager();
+            frgManager.beginTransaction().replace(R.id.content_frame, fragment)
+                    .commit();
+
+            drawerListView.setItemChecked(position, true);
+
+            super.setTitle(item.getItemName());
+
+            super.SelectItem(position, mcontext, model, drawerListView);
+        }
+    }
 }
