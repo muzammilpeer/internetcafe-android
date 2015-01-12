@@ -1,34 +1,32 @@
 package com.triadslabs.internetcafe.cell;
 
-import android.view.View;
 import android.widget.TextView;
 
 import com.triadslabs.internetcafe.R;
 import com.triadslabs.internetcafe.model.DashboardItem;
+
+import butterknife.InjectView;
 
 /**
  * Created by MuzammilPeer on 1/11/2015.
  */
 public class DashboardCell extends BaseCell {
 
-    TextView tvRoomNumber,tvClientName,tvAccessories,tvCheckIn,tvAmount,tvCheckOut;
+    @InjectView(R.id.tvRoomNumber) TextView tvRoomNumber;
+    @InjectView(R.id.tvClientName) TextView tvClientName;
+    @InjectView(R.id.tvAccessories) TextView tvAccessories;
+    @InjectView(R.id.tvCheckIn) TextView tvCheckIn;
+    @InjectView(R.id.tvAmount) TextView tvAmount;
+    @InjectView(R.id.tvCheckOut) TextView tvCheckOut;
 
-    @Override
-    public void setupChildren(View view) {
-        if (view != null) {
-            //assign it to base cell view
-            vBase = view;
-
-            //inflate your views
-            tvRoomNumber = (TextView) vBase.findViewById(R.id.tvRoomNumber);
-            tvClientName = (TextView) vBase.findViewById(R.id.tvClientName);
-            tvAccessories = (TextView) vBase.findViewById(R.id.tvAccessories);
-            tvCheckIn = (TextView) vBase.findViewById(R.id.tvCheckIn);
-            tvAmount = (TextView) vBase.findViewById(R.id.tvAmount);
-            tvCheckOut = (TextView) vBase.findViewById(R.id.tvCheckOut);
-
-        }
-    }
+//    @Override
+//    public void setupChildren(View view) {
+//        if (view != null) {
+//            //assign it to base cell view
+//            vBase = view;
+//            ButterKnife.inject(this, view);
+//        }
+//    }
 
     @Override
     public void updateCell(Object model) {

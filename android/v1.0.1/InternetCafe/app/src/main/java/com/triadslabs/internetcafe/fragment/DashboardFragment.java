@@ -20,12 +20,17 @@ import com.triadslabs.internetcafe.model.DashboardItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * Created by MuzammilPeer on 1/11/2015.
  */
 public class DashboardFragment extends BaseFragment implements TabListener {
 
-    private ListView lvDashboard;
+    @InjectView(R.id.lvDashboard) ListView lvDashboard;
+//    private ListView lvDashboard;
+
     private GeneralArrayAdapter adDashboard;
 
     private List<DashboardItem> localDataSource;
@@ -46,7 +51,9 @@ public class DashboardFragment extends BaseFragment implements TabListener {
 
     private void initViews(View view)
     {
-        lvDashboard = (ListView) view.findViewById(R.id.lvDashboard);
+        ButterKnife.inject(this, view);
+
+//        lvDashboard = (ListView) view.findViewById(R.id.lvDashboard);
 
     }
 

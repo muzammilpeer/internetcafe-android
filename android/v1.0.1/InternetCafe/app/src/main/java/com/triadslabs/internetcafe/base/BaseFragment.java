@@ -1,11 +1,13 @@
 package com.triadslabs.internetcafe.base;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
 import android.support.v7.app.ActionBar;
 
 import com.triadslabs.internetcafe.R;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by MuzammilPeer on 1/4/2015.
@@ -45,5 +47,11 @@ abstract public class BaseFragment extends Fragment {
     {
         FragmentManager frgManager = this.getBaseActivity().getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
 }

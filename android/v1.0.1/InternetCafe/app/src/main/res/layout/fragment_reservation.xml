@@ -18,6 +18,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
+                android:singleLine="true"
                 android:text="@string/client_name"
                 android:id="@+id/etClientName"
                 android:layout_weight="1"
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
+            android:singleLine="true"
             android:text="@string/client_amount"
             android:id="@+id/etClientAmount"
             android:layout_weight="1"
@@ -53,6 +55,7 @@
 
 
         <EditText
+            android:singleLine="true"
             android:text="@string/client_checkin"
             android:id="@+id/etClientCheckIn"
             android:layout_weight="1"
@@ -75,6 +78,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
+            android:singleLine="true"
             android:hint="@string/client_checkout"
             android:layout_weight="1"
             android:id="@+id/etClientCheckOut"

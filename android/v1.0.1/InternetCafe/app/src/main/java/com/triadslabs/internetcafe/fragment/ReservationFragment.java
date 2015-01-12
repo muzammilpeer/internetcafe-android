@@ -16,14 +16,30 @@ import com.triadslabs.internetcafe.listener.ReservationClickListener;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * Created by MuzammilPeer on 1/11/2015.
  */
 public class ReservationFragment extends BaseFragment {
 
-    EditText etClientName,etClientAmount,etCheckIn,etCheckOut,etSecurityDeposit;
-    Spinner spCheckOut,spSecurityDeposit;
-    Button bUSB,bCamera,bCardReader,bCancel,bUpdate,bDelete;
+    @InjectView(R.id.etClientName) EditText etClientName;
+    @InjectView(R.id.etClientAmount) EditText etClientAmount;
+    @InjectView(R.id.etClientCheckIn) EditText etCheckIn;
+    @InjectView(R.id.etClientCheckOut) EditText etCheckOut;
+    @InjectView(R.id.etClientSecurityDeposit) EditText etSecurityDeposit;
+
+    @InjectView(R.id.spClientCheckOut) Spinner spCheckOut;
+    @InjectView(R.id.spClientSecurityDeposit) Spinner spSecurityDeposit;
+
+    @InjectView(R.id.bUSB) Button bUSB;
+    @InjectView(R.id.bCamera) Button bCamera;
+    @InjectView(R.id.bCardReader) Button bCardReader;
+    @InjectView(R.id.bCancel) Button bCancel;
+    @InjectView(R.id.bUpdate) Button bUpdate;
+    @InjectView(R.id.bDelete) Button bDelete;
+
 
     GeneralArrayAdapter adCheckOut,adSecurityDeposit;
     ArrayList checkOutDataSource,securityDataSource;
@@ -45,21 +61,7 @@ public class ReservationFragment extends BaseFragment {
 
     private void initViews(View view)
     {
-        etClientName = (EditText) view.findViewById(R.id.etClientName);
-        etClientAmount = (EditText) view.findViewById(R.id.etClientAmount);
-        etCheckIn = (EditText) view.findViewById(R.id.etClientCheckIn);
-        etCheckOut = (EditText) view.findViewById(R.id.etClientCheckOut);
-        etSecurityDeposit = (EditText) view.findViewById(R.id.etClientSecurityDeposit);
-
-        spCheckOut = (Spinner) view.findViewById(R.id.spClientCheckOut);
-        spSecurityDeposit = (Spinner) view.findViewById(R.id.spClientSecurityDeposit);
-
-        bCamera = (Button) view.findViewById(R.id.bCamera);
-        bCancel = (Button) view.findViewById(R.id.bCancel);
-        bCardReader = (Button) view.findViewById(R.id.bCardReader);
-        bDelete = (Button) view.findViewById(R.id.bDelete);
-        bUpdate = (Button) view.findViewById(R.id.bUpdate);
-        bUSB = (Button) view.findViewById(R.id.bUSB);
+        ButterKnife.inject(this, view);
     }
 
     private void initObjects(View view)
