@@ -1,10 +1,8 @@
 package com.triadslabs.internetcafe.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
-import android.support.v7.app.ActionBar.TabListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,25 +13,25 @@ import com.triadslabs.internetcafe.adaptor.GeneralArrayAdapter;
 import com.triadslabs.internetcafe.base.BaseFragment;
 import com.triadslabs.internetcafe.cell.DashboardCell;
 import com.triadslabs.internetcafe.listener.DashboardItemClickListener;
+import com.triadslabs.internetcafe.listener.DashboardTabListener;
 import com.triadslabs.internetcafe.model.DashboardItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
  * Created by MuzammilPeer on 1/11/2015.
  */
-public class DashboardFragment extends BaseFragment implements TabListener {
+public class DashboardFragment extends BaseFragment {
 
     @InjectView(R.id.lvDashboard) ListView lvDashboard;
-//    private ListView lvDashboard;
 
     private GeneralArrayAdapter adDashboard;
-
-    private List<DashboardItem> localDataSource;
+    public GeneralArrayAdapter getAdDashboard() {
+        return adDashboard;
+    }
 
     private List<DashboardItem> reserveDataSource;
     private List<DashboardItem> freeDataSource;
@@ -45,33 +43,33 @@ public class DashboardFragment extends BaseFragment implements TabListener {
 
         initViews(rootView);
         initObjects(rootView);
-        initListener();
+        initListener(rootView);
+
         return rootView;
     }
 
-    private void initViews(View view)
+    protected void initViews(View view)
     {
-        ButterKnife.inject(this, view);
-
-//        lvDashboard = (ListView) view.findViewById(R.id.lvDashboard);
-
+        super.initViews(view);
     }
 
-    private void initObjects(View view)
+    protected void initObjects(View view)
     {
-        setupActionBarTabs();
+        super.initObjects(view);
+
         generateDataSource();
-
-        localDataSource = new ArrayList<DashboardItem>();
-        localDataSource.addAll(this.reserveDataSource);
-
-        adDashboard = new GeneralArrayAdapter(getContext(),R.layout.cell_dashboard,localDataSource, DashboardCell.class);
+        adDashboard = new GeneralArrayAdapter(getContext(),R.layout.cell_dashboard,this.getLocalDataSource(), DashboardCell.class);
         lvDashboard.setAdapter(adDashboard);
+
+        //at the end setup actionbar to stop crashing null selection
+        setupActionBarTabs();
     }
 
-    private  void initListener()
+    protected  void initListener(View view)
     {
-        lvDashboard.setOnItemClickListener(new DashboardItemClickListener());
+        super.initListener(view);
+
+        lvDashboard.setOnItemClickListener(new DashboardItemClickListener(this));
     }
 
     private void generateDataSource()
@@ -101,7 +99,7 @@ public class DashboardFragment extends BaseFragment implements TabListener {
         Tab tab1 = actionBar
                 .newTab()
                 .setText("Reserve")
-                .setTabListener(this);
+                .setTabListener(new DashboardTabListener(this));
 
         actionBar.addTab(tab1);
         actionBar.selectTab(tab1);
@@ -109,42 +107,19 @@ public class DashboardFragment extends BaseFragment implements TabListener {
         Tab tab2 = actionBar
                 .newTab()
                 .setText("Free")
-                .setTabListener(this);
+                .setTabListener(new DashboardTabListener(this));
         actionBar.addTab(tab2);
     }
 
 
-    //Tab Bar implementation
-    @Override
-    public void onTabSelected(Tab tab, FragmentTransaction fragmentTransaction) {
-
-        if (this.localDataSource != null) {
-            switch (tab.getPosition())
-            {
-                case 0 : {
-                    this.localDataSource.clear();
-                    this.localDataSource.addAll(reserveDataSource);
-                }break;
-                case 1 : {
-                    this.localDataSource.clear();
-                    this.localDataSource.addAll(freeDataSource);
-                }break;
-                default: {
-
-                }break;
-            }
-            adDashboard.notifyDataSetChanged();
-
-        }
+    public List<DashboardItem> getReserveDataSource() {
+        return reserveDataSource;
     }
 
-    @Override
-    public void onTabUnselected(Tab tab, FragmentTransaction fragmentTransaction) {
-
+    public List<DashboardItem> getFreeDataSource() {
+        return freeDataSource;
     }
 
-    @Override
-    public void onTabReselected(Tab tab, FragmentTransaction fragmentTransaction) {
 
-    }
+
 }

@@ -3,7 +3,6 @@ package com.triadslabs.internetcafe.adaptor;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import com.triadslabs.internetcafe.R;
 import com.triadslabs.internetcafe.model.ExtendedItem;
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * Created by MuzammilPeer on 1/10/2015.
  */
-public class ExtendedGeneralArrayAdapter extends ArrayAdapter {
+public class ExtendedGeneralArrayAdapter extends BaseArrayAdapter {
     //this class is for equivalence to xlform project in ios
     //Reference  https://github.com/xmartlabs/XLForm
     // Requirement
@@ -27,11 +26,8 @@ public class ExtendedGeneralArrayAdapter extends ArrayAdapter {
 
     //localDataSource.add(new ExtendedItem(R.layout.some_cell,DrawerItemCell.class,model);
 
-    int layoutResID;
-
     public ExtendedGeneralArrayAdapter(Context c, List items) {
         super(c, R.layout.item_view, items);
-
     }
 
     // Spinner/DropDown getDropDownView() support
@@ -61,7 +57,7 @@ public class ExtendedGeneralArrayAdapter extends ArrayAdapter {
 
         if (itemView != null) {
             //updateCell
-            itemView.setItem(((ExtendedItem)getItem(position)).getItem());
+            itemView.updateCell(((ExtendedItem) getItem(position)).getItem());
         }
         return itemView;
     }

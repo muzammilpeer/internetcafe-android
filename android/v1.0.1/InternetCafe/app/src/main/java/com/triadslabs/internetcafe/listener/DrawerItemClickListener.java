@@ -1,5 +1,6 @@
 package com.triadslabs.internetcafe.listener;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -13,18 +14,20 @@ import com.triadslabs.internetcafe.model.ExtendedItem;
 /**
  * Created by MuzammilPeer on 1/4/2015.
  */
-public class DrawerItemClickListener implements
-        ListView.OnItemClickListener {
+public class DrawerItemClickListener  extends BaseListener {
 
-    @Override
+    public DrawerItemClickListener(Activity currentActivity) {
+        super(currentActivity);
+    }
+
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
 
         Object model = parent.getAdapter().getItem(position);
         if (model instanceof DrawerItem) {
             DrawerItem item = (DrawerItem) model;
-            if (view.getContext() instanceof MainActivity) {
-                MainActivity activity = ((MainActivity) view.getContext());
+            if (this.getActivity() instanceof MainActivity) {
+                MainActivity activity = (MainActivity) this.getActivity();
                 ListView selectedListView = activity.getmLeftDrawerList();
                 if (parent.getId() == R.id.right_drawer) {
                     selectedListView = activity.getmRightDrawerList();
@@ -38,8 +41,8 @@ public class DrawerItemClickListener implements
         {
             if (((ExtendedItem) model).getItem() instanceof DrawerItem) {
                 DrawerItem item = (DrawerItem) ((ExtendedItem) model).getItem();
-                if (view.getContext() instanceof MainActivity) {
-                    MainActivity activity = ((MainActivity) view.getContext());
+                if (this.getActivity() instanceof MainActivity) {
+                    MainActivity activity = (MainActivity) this.getActivity();
                     ListView selectedListView = activity.getmLeftDrawerList();
                     if (parent.getId() == R.id.right_drawer) {
                         selectedListView = activity.getmRightDrawerList();

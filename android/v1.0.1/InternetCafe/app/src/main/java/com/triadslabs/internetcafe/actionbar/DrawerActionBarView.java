@@ -1,46 +1,29 @@
 package com.triadslabs.internetcafe.actionbar;
 
-import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.triadslabs.internetcafe.MainActivity;
 import com.triadslabs.internetcafe.R;
 import com.triadslabs.internetcafe.model.DrawerItem;
-import android.os.Build;
+
+import butterknife.InjectView;
 
 /**
  * Created by muzammilpeer on 1/5/15.
  */
 public class DrawerActionBarView extends BaseActionBarView {
 
-    TextView ItemName;
-    ImageButton leftIcon;
-    ImageButton rightIcon;
+    @InjectView(R.id.tvActionbarTitle) TextView ItemName;
+    @InjectView(R.id.ivActionbarButton) ImageButton leftIcon;
+    @InjectView(R.id.ivActionbarSetting) ImageButton rightIcon;
 
     boolean isOpen;
 
     @Override
-    public void setupChildren(View view) {
-        if (view != null) {
-            //assign it to base cell view
-            vBase = view;
-
-            //inflate your views
-            ItemName = (TextView) vBase.findViewById(R.id.tvActionbarTitle);
-            leftIcon = (ImageButton) vBase.findViewById(R.id.ivActionbarButton);
-            rightIcon = (ImageButton) vBase.findViewById(R.id.ivActionbarSetting);
-
-        }
-    }
-
-    @Override
-    public void updateActionBar(Object model) {
+    public void updateCell(Object model) {
         if (model instanceof DrawerItem) {
             DrawerItem dItem = (DrawerItem) model;
 

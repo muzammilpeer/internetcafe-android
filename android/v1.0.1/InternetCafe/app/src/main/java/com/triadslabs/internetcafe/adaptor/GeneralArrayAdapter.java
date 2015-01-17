@@ -3,13 +3,12 @@ package com.triadslabs.internetcafe.adaptor;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import com.triadslabs.internetcafe.view.BaseItemView;
 
 import java.util.List;
 
-public  class GeneralArrayAdapter extends ArrayAdapter {
+public  class GeneralArrayAdapter extends BaseArrayAdapter {
 
     int layoutResID;
     Class classReference;
@@ -44,7 +43,7 @@ public  class GeneralArrayAdapter extends ArrayAdapter {
 
         if (itemView != null) {
             //updateCell
-            itemView.setItem(getItem(position));
+            itemView.updateCell(getItem(position));
         }
         return itemView;
     }

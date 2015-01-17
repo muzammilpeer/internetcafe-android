@@ -11,7 +11,7 @@ abstract public class BaseCell {
     //view shared
     protected View vBase;
 
-    public void setupChildren(View view)
+    public void initializeViews(View view)
     {
         if (view != null) {
             //assign it to base cell view

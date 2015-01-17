@@ -54,17 +54,17 @@ public class ReservationFragment extends BaseFragment {
 
         initViews(rootView);
         initObjects(rootView);
-        initListener();
+        initListener(rootView);
 
         return rootView;
     }
 
-    private void initViews(View view)
+    protected void initViews(View view)
     {
         ButterKnife.inject(this, view);
     }
 
-    private void initObjects(View view)
+    protected void initObjects(View view)
     {
         generateCheckOutData();
         generateSecurityDeposit();
@@ -75,6 +75,12 @@ public class ReservationFragment extends BaseFragment {
         spSecurityDeposit.setAdapter(adSecurityDeposit);
         spCheckOut.setAdapter(adCheckOut);
 
+    }
+    protected   void initListener(View view)
+    {
+        bUpdate.setOnClickListener(new ReservationClickListener(this));
+        bCancel.setOnClickListener(new ReservationClickListener(this));
+        bDelete.setOnClickListener(new ReservationClickListener(this));
     }
 
     private void generateCheckOutData()
@@ -93,12 +99,7 @@ public class ReservationFragment extends BaseFragment {
         securityDataSource.add("Amount");
         securityDataSource.add("Reference");
     }
-    private  void initListener()
-    {
-        bUpdate.setOnClickListener(new ReservationClickListener());
-        bCancel.setOnClickListener(new ReservationClickListener());
-        bDelete.setOnClickListener(new ReservationClickListener());
-    }
+
 
 
 }

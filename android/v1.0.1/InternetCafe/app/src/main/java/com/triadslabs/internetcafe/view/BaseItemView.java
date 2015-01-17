@@ -29,7 +29,7 @@ public class BaseItemView extends RelativeLayout {
         View baseView = LayoutInflater.from(parent.getContext()).inflate(layoutResourceID , itemView, true);
         //Cell Reference and cell views setup is called to fetch views from xml
         itemView.bCell = (BaseCell)ReflectionUtils.instantiate(cell);
-        itemView.bCell.setupChildren(baseView);
+        itemView.bCell.initializeViews(baseView);
 
         return itemView;
     }
@@ -49,7 +49,7 @@ public class BaseItemView extends RelativeLayout {
     }
 
     //set item will call updatecell()
-    public void setItem(Object item) {
+    public void updateCell(Object item) {
         bCell.updateCell(item);
     }
 }

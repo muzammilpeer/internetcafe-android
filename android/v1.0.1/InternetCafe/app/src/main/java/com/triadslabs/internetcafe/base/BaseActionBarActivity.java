@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.internetcafe.actionbar.BaseActionBarView;
 import com.triadslabs.internetcafe.utils.ReflectionUtils;
 
 
@@ -89,26 +90,35 @@ abstract public class BaseActionBarActivity  extends BaseActivity
     }
 
     //actionbar customization
-    private Object setupCustomActionBar(int resourceID,Class customBarClass)
+//    private BaseActionBarView setupCustomActionBar(int resourceID,Class customBarClass)
+//    {
+//        BaseActionBarView customBar = (BaseActionBarView)ReflectionUtils.instantiate(customBarClass);
+//        View actionbarView = getLayoutInflater().inflate(resourceID,
+//                null);
+//        getSupportActionBar().setCustomView(null);
+//        getSupportActionBar().setCustomView(actionbarView);
+//        customBar.initializeViews(actionbarView);
+////        ReflectionUtils.callMethod("initializeViews",View.class,actionbarView,customBar.getClass(),customBar);
+//        return customBar;
+//    }
+//
+//    private void updateCustomActionBar(Object model,Object customBar)
+//    {
+//        ReflectionUtils.callMethod("updateCell",Object.class,model,customBar.getClass(),customBar);
+//    }
+//
+    public void initializeCustomActionBar(int rID,Class barClass,Object model)
     {
-        Object customBar = ReflectionUtils.instantiate(customBarClass);
-        View actionbarView = getLayoutInflater().inflate(resourceID,
+        BaseActionBarView customBar = (BaseActionBarView)ReflectionUtils.instantiate(barClass);
+        View actionbarView = getLayoutInflater().inflate(rID,
                 null);
         getSupportActionBar().setCustomView(null);
         getSupportActionBar().setCustomView(actionbarView);
-        ReflectionUtils.callMethod("setupChildren",View.class,actionbarView,customBar.getClass(),customBar);
-        return customBar;
-    }
 
-    private void updateCustomActionBar(Object model,Object customBar)
-    {
-        ReflectionUtils.callMethod("updateActionBar",Object.class,model,customBar.getClass(),customBar);
-    }
-
-    public void initializeCustomActionBar(int rID,Class barClass,Object model)
-    {
-        Object customBar = setupCustomActionBar(rID,barClass);
-        updateCustomActionBar(model,customBar);
+        //setup childerens views
+        customBar.initializeViews(actionbarView);
+        //update with model
+        customBar.updateCell(model);
     }
 
 

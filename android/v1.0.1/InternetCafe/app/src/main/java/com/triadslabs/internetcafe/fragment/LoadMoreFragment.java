@@ -44,28 +44,29 @@ public class LoadMoreFragment extends BaseFragment{
                 false);
 
         initViews(view);
-        initObjects();
-        initListener();
+        initObjects(view);
+        initListener(view);
+
         showHideTabs(false);
 
         return view;
     }
 
-    private void initViews(View view)
+    protected void initViews(View view)
     {
         lmListView = (LoadMoreListView)view.findViewById(R.id.lmListView);
         lmListAdaptor = new GeneralArrayAdapter(view.getContext(), R.layout.item_view_children, localDataSource,DrawerCell.class);
 
     }
 
-    private void  initObjects()
+    protected void  initObjects(View view)
     {
         localDataSource = new ArrayList();
         generateRecordWithSize(pageSize);
         lmListAdaptor.notifyDataSetChanged();
     }
 
-    private void initListener()
+    protected void initListener(View view)
     {
         // set a listener to be invoked when the list reaches the end
         lmListView.setOnLoadMoreListener(new OnLoadMoreListener() {

@@ -1,17 +1,21 @@
 package com.triadslabs.internetcafe.listener;
 
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.base.BaseActivity;
-import com.triadslabs.internetcafe.base.BaseFragment;
 import com.triadslabs.internetcafe.fragment.DashboardFragment;
 import com.triadslabs.internetcafe.fragment.ReservationFragment;
 
 /**
  * Created by MuzammilPeer on 1/11/2015.
  */
-public class ReservationClickListener implements View.OnClickListener {
+public class ReservationClickListener extends BaseListener {
+
+    public ReservationClickListener(Fragment currentFragment) {
+        super(currentFragment);
+    }
+
     /**
      * Called when a view has been clicked.
      *
@@ -20,9 +24,8 @@ public class ReservationClickListener implements View.OnClickListener {
     @Override
     public void onClick(View v)
     {
-        if (v.getContext() instanceof BaseActivity) {
-            BaseActivity activity = ((BaseActivity) v.getContext());
-            ReservationFragment fragment = (ReservationFragment)getActiveFragment(activity) != null ? (ReservationFragment)getActiveFragment(activity) : new ReservationFragment() ;
+        if (this.getFragment() instanceof ReservationFragment) {
+            ReservationFragment fragment = (ReservationFragment)this.getFragment();
 
             if (v.getId() == R.id.bCancel) {
                 fragment.replaceFragment(new DashboardFragment());
@@ -34,7 +37,5 @@ public class ReservationClickListener implements View.OnClickListener {
         }
     }
 
-    public BaseFragment getActiveFragment(BaseActivity activity) {
-        return (BaseFragment)activity.getSupportFragmentManager().getFragments().get(0);
-    }
+
 }

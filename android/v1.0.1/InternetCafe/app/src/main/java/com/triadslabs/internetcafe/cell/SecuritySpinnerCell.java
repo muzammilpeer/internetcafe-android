@@ -7,7 +7,7 @@ public class SecuritySpinnerCell extends BaseCell
 {
 
 //    @Override
-//    public void setupChildren(View view) {
+//    public void initializeViews(View view) {
 //        if (view != null) {
 //            //assign it to base cell view
 //            vBase = view;

@@ -65,8 +65,8 @@ public class MainActivity extends BaseActionBarActivity {
 
         mRightDrawerList.setAdapter(rightadapter);
 
-        mLeftDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        mRightDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        mLeftDrawerList.setOnItemClickListener(new DrawerItemClickListener(this));
+        mRightDrawerList.setOnItemClickListener(new DrawerItemClickListener(this));
 
         if (savedInstanceState == null) {
             SelectItem(0, this, leftDataList.get(0), mLeftDrawerList);

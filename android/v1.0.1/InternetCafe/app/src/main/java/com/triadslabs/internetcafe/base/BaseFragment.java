@@ -4,8 +4,12 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
+import android.view.View;
 
 import com.triadslabs.internetcafe.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -14,22 +18,50 @@ import butterknife.ButterKnife;
  */
 abstract public class BaseFragment extends Fragment {
 
-    private BaseActivity baseActivity;
-    private Context context;
+    private List localDataSource;
+    public List getLocalDataSource() {
+        return localDataSource;
+    }
+    public void setLocalDataSource(List localDataSource) {
+        this.localDataSource = localDataSource;
+    }
 
-//    public BaseFragment() {
-//        this.baseActivity = (BaseActivity)this.getActivity();
-//        this.context = this.baseActivity;
-//    }
+    protected void initViews(View view)
+    {
+        ButterKnife.inject(this, view);
+    }
 
-//    actionBar = getSherlockActivity().getSupportActionBar();
-//    actionBar.removeAllTabs();
-//    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+    protected void initObjects(View view)
+    {
+        localDataSource = new ArrayList();
+
+    }
+
+    protected  void initListener(View view)
+    {
+        //todo
+    }
 
     public ActionBar getSupportActionBar()
     {
        return this.getBaseActivity().getSupportActionBar();
     }
+
+
+
+    public void showHideTabs(boolean isShow) {
+        getSupportActionBar().setNavigationMode(isShow ? ActionBar.NAVIGATION_MODE_TABS : ActionBar.NAVIGATION_MODE_STANDARD);
+    }
+
+
+
+
+    public void replaceFragment(BaseFragment fragment)
+    {
+        FragmentManager frgManager = this.getBaseActivity().getSupportFragmentManager();
+        frgManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+    }
+
 
     public BaseActivity getBaseActivity() {
         return (BaseActivity)this.getActivity();
@@ -39,15 +71,7 @@ abstract public class BaseFragment extends Fragment {
         return this.getBaseActivity();
     }
 
-    public void showHideTabs(boolean isShow) {
-        getSupportActionBar().setNavigationMode(isShow ? ActionBar.NAVIGATION_MODE_TABS : ActionBar.NAVIGATION_MODE_STANDARD);
-    }
 
-    public void replaceFragment(BaseFragment fragment)
-    {
-        FragmentManager frgManager = this.getBaseActivity().getSupportFragmentManager();
-        frgManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-    }
 
     @Override
     public void onDestroyView() {

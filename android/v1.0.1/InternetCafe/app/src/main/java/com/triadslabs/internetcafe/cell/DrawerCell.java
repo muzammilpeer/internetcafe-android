@@ -17,7 +17,7 @@ public class DrawerCell extends BaseCell {
     @InjectView(R.id.drawer_icon) ImageView itemIcon;
 
 //    @Override
-//    public void setupChildren(View view) {
+//    public void initializeViews(View view) {
 //        if (view != null) {
 //            //assign it to base cell view
 //            vBase = view;
