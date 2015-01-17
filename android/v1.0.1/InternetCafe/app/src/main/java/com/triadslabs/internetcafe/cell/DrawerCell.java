@@ -4,6 +4,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.internetcafe.base.BaseCell;
 import com.triadslabs.internetcafe.model.DrawerItem;
 
 import butterknife.InjectView;

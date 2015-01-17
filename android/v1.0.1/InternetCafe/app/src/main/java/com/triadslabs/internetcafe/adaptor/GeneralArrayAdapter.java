@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.triadslabs.internetcafe.view.BaseItemView;
+import com.triadslabs.internetcafe.base.BaseItemView;
 
 import java.util.List;
 

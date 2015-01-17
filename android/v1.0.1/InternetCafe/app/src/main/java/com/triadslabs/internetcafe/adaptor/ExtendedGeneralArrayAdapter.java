@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import com.triadslabs.internetcafe.R;
 import com.triadslabs.internetcafe.model.ExtendedItem;
-import com.triadslabs.internetcafe.view.BaseItemView;
+import com.triadslabs.internetcafe.base.BaseItemView;
 
 import java.util.List;
 

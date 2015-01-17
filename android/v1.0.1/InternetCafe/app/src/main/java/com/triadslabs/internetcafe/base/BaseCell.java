@@ -1,14 +1,13 @@
-package com.triadslabs.internetcafe.actionbar;
+package com.triadslabs.internetcafe.base;
 
 import android.view.View;
 
 import butterknife.ButterKnife;
 
 /**
- * Created by muzammilpeer on 1/5/15.
+ * Created by MuzammilPeer on 1/4/2015.
  */
-
-abstract public class BaseActionBarView {
+abstract public class BaseCell {
     //view shared
     protected View vBase;
 
@@ -20,6 +19,7 @@ abstract public class BaseActionBarView {
             ButterKnife.inject(this, view);
         }
     }
-
     abstract public void updateCell(Object model);
+
+//    abstract public BaseCell initialize();
 }

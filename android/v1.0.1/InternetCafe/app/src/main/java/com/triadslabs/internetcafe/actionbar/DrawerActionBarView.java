@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.triadslabs.internetcafe.MainActivity;
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.internetcafe.base.BaseActionBarView;
 import com.triadslabs.internetcafe.model.DrawerItem;
 
 import butterknife.InjectView;

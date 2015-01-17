@@ -1,4 +1,4 @@
-package com.triadslabs.internetcafe.listener;
+package com.triadslabs.internetcafe.base;
 
 import android.support.v7.app.ActionBar;
 import android.view.View;

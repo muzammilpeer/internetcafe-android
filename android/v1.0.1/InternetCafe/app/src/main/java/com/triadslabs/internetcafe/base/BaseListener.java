@@ -1,4 +1,4 @@
-package com.triadslabs.internetcafe.listener;
+package com.triadslabs.internetcafe.base;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;

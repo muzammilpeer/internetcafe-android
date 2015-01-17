@@ -1,5 +1,7 @@
 package com.triadslabs.internetcafe.model;
 
+import com.triadslabs.internetcafe.base.BaseItem;
+
 /**
  * Created by MuzammilPeer on 1/11/2015.
  */

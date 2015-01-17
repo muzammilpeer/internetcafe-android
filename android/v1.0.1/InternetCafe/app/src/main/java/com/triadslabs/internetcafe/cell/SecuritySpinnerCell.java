@@ -1,5 +1,7 @@
 package com.triadslabs.internetcafe.cell;
 
+import com.triadslabs.internetcafe.base.BaseCell;
+
 /**
  * Created by MuzammilPeer on 1/11/2015.
  */

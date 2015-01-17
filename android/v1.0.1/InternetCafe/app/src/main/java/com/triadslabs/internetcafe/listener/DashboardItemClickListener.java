@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.triadslabs.internetcafe.base.BaseListener;
 import com.triadslabs.internetcafe.fragment.DashboardFragment;
 import com.triadslabs.internetcafe.fragment.ReservationFragment;
 import com.triadslabs.internetcafe.model.DashboardItem;

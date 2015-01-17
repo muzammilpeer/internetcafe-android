@@ -1,9 +1,11 @@
 package com.triadslabs.internetcafe.model;
 
+import com.triadslabs.internetcafe.base.BaseItem;
+
 /**
  * Created by MuzammilPeer on 1/10/2015.
  */
-public class ExtendedItem  extends BaseItem{
+public class ExtendedItem  extends BaseItem {
 
     private int resourceID;
     private Class clazzName;

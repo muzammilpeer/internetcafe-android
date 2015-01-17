@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 
+import com.triadslabs.internetcafe.base.BaseListener;
 import com.triadslabs.internetcafe.fragment.DashboardFragment;
 
 /**

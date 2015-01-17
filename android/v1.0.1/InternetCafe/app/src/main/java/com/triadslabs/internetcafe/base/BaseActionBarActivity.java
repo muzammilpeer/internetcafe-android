@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.actionbar.BaseActionBarView;
 import com.triadslabs.internetcafe.utils.ReflectionUtils;
 
 

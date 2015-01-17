@@ -1,5 +1,7 @@
 package com.triadslabs.internetcafe.model;
 
+import com.triadslabs.internetcafe.base.BaseItem;
+
 public class DrawerItem extends BaseItem {
 
 	String ItemName;

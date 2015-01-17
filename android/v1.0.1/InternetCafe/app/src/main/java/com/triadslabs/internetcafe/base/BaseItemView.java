@@ -1,4 +1,4 @@
-package com.triadslabs.internetcafe.view;
+package com.triadslabs.internetcafe.base;
 
 import android.view.View;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.cell.BaseCell;
 import com.triadslabs.internetcafe.utils.ReflectionUtils;
 
 

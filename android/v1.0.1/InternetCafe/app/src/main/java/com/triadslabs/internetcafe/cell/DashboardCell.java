@@ -3,6 +3,7 @@ package com.triadslabs.internetcafe.cell;
 import android.widget.TextView;
 
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.internetcafe.base.BaseCell;
 import com.triadslabs.internetcafe.model.DashboardItem;
 
 import butterknife.InjectView;
