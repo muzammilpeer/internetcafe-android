@@ -18,7 +18,7 @@ import com.triadslabs.internetcafe.model.ExtendedItem;
 public class DrawerItemClickListener  extends ListViewOnItemClickListener {
 
     /**
-     * @param currentActivity Copy constructor for keeping reference of current activity
+     * @param currentActivity Copy constructor for keeping reference of current activity , make your child class constructor to public modifier
      */
     public DrawerItemClickListener(Activity currentActivity) {
         super(currentActivity);

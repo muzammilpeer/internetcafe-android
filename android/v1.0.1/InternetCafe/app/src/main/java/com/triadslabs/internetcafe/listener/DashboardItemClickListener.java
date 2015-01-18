@@ -15,7 +15,7 @@ import com.triadslabs.internetcafe.model.DashboardItem;
 public class DashboardItemClickListener extends ListViewOnItemClickListener {
 
     /**
-     * @param currentFragment Copy constructor for keeping reference of current fragment
+     * @param currentFragment Copy constructor for keeping reference of current fragment , make your child class constructor to public modifier
      */
     public DashboardItemClickListener(Fragment currentFragment) {
         super(currentFragment);

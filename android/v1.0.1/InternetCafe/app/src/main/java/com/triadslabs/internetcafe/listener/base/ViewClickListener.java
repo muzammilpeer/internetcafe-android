@@ -12,14 +12,14 @@ import com.triadslabs.internetcafe.base.BaseListener;
 abstract public class ViewClickListener extends BaseListener {
 
     /**
-     * @param currentFragment Copy constructor for keeping reference of current fragment
+     * @param currentFragment Copy constructor for keeping reference of current fragment , make your child class constructor to public modifier
      */
     public ViewClickListener(Fragment currentFragment) {
         super(currentFragment);
     }
 
     /**
-     * @param currentActivity Copy constructor for keeping reference of current activity
+     * @param currentActivity Copy constructor for keeping reference of current activity , make your child class constructor to public modifier
      */
     public ViewClickListener(Activity currentActivity) {
         super(currentActivity);

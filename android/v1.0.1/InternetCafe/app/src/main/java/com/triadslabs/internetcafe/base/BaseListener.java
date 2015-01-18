@@ -30,7 +30,7 @@ abstract public class BaseListener  implements IBaseListener {
 
     /**
      * @param currentFragment
-     * Copy constructor for keeping reference of current fragment
+     * Copy constructor for keeping reference of current fragment , make your child class constructor to public modifier
      */
     protected BaseListener(Fragment currentFragment) {
         this.fragment = currentFragment;
@@ -38,7 +38,7 @@ abstract public class BaseListener  implements IBaseListener {
 
     /**
      * @param currentActivity
-     * Copy constructor for keeping reference of current activity
+     * Copy constructor for keeping reference of current activity , make your child class constructor to public modifier
      */
     protected BaseListener(Activity currentActivity) {
         this.activity = currentActivity;

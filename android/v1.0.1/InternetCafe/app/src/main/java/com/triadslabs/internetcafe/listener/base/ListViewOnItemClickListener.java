@@ -13,14 +13,14 @@ import com.triadslabs.internetcafe.base.BaseListener;
 abstract public class ListViewOnItemClickListener extends BaseListener {
 
     /**
-     * @param currentFragment Copy constructor for keeping reference of current fragment
+     * @param currentFragment Copy constructor for keeping reference of current fragment , make your child class constructor to public modifier
      */
     protected ListViewOnItemClickListener(Fragment currentFragment) {
         super(currentFragment);
     }
 
     /**
-     * @param currentActivity Copy constructor for keeping reference of current activity
+     * @param currentActivity Copy constructor for keeping reference of current activity , make your child class constructor to public modifier
      */
     protected ListViewOnItemClickListener(Activity currentActivity) {
         super(currentActivity);

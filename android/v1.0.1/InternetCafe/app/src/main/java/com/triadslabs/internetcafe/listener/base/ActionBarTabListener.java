@@ -13,14 +13,14 @@ import com.triadslabs.internetcafe.base.BaseListener;
 abstract  public class ActionBarTabListener extends BaseListener {
 
     /**
-     * @param currentFragment Copy constructor for keeping reference of current fragment
+     * @param currentFragment Copy constructor for keeping reference of current fragment , make your child class constructor to public modifier
      */
     protected ActionBarTabListener(Fragment currentFragment) {
         super(currentFragment);
     }
 
     /**
-     * @param currentActivity Copy constructor for keeping reference of current activity
+     * @param currentActivity Copy constructor for keeping reference of current activity , make your child class constructor to public modifier
      */
     protected ActionBarTabListener(Activity currentActivity) {
         super(currentActivity);

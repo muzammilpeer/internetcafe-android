@@ -13,7 +13,7 @@ import com.triadslabs.internetcafe.listener.base.ViewClickListener;
  */
 public class ReservationClickListener extends ViewClickListener {
     /**
-     * @param currentFragment Copy constructor for keeping reference of current fragment
+     * @param currentFragment Copy constructor for keeping reference of current fragment , make your child class constructor to public modifier
      */
     public ReservationClickListener(Fragment currentFragment) {
         super(currentFragment);

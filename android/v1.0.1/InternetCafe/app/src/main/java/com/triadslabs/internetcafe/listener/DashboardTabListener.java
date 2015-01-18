@@ -13,7 +13,7 @@ import com.triadslabs.internetcafe.listener.base.ActionBarTabListener;
 public class DashboardTabListener extends ActionBarTabListener
 {
     /**
-     * @param currentFragment Copy constructor for keeping reference of current fragment
+     * @param currentFragment Copy constructor for keeping reference of current fragment , make your child class constructor to public modifier
      */
     public DashboardTabListener(Fragment currentFragment) {
         super(currentFragment);
