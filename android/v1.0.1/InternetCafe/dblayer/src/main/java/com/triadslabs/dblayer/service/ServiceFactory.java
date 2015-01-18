@@ -15,8 +15,7 @@ public class ServiceFactory {
 
     private static ServiceFactory ourInstance = new ServiceFactory();
 
-    private DatabaseHelper databaseHelper;
-//    private static DatabaseManager<DatabaseHelper> manager  = new DatabaseManager<DatabaseHelper>();
+    private static DatabaseHelper databaseHelper;
 
     public static ServiceFactory getInstance() {
         return ourInstance;
@@ -31,13 +30,9 @@ public class ServiceFactory {
         BaseService service = null;
 
         try {
-
-//            service = (BaseService)serviceName.newInstance();
-//            service.setDatabaseHelper(manager.getHelper(context));
-//            DatabaseHelper
-//get constructor that takes a String as argument
             if (databaseHelper == null) {
                 databaseHelper = new DatabaseHelper(context);
+                databaseHelper.getWritableDatabase();
             }
 
             Constructor constructor = serviceName.getConstructor(DatabaseHelper.class);

@@ -85,6 +85,8 @@ public class MainActivity extends BaseActionBarActivity {
     private  void initDB()
     {
         try {
+//            DatabaseHelper helper = new DatabaseHelper(getApplicationContext());
+
             IUserService service = (IUserService) ServiceFactory.getInstance().getService(UserService.class,getApplicationContext());
             User user = new User("Bruno", "peer", "MySecretPassword",
                     "email@gmail.com");

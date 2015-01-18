@@ -8,6 +8,8 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 /**
  * Created by MuzammilPeer on 1/18/2015.
  */
+
+// this class is not used...integration issue in getHelper method of this class(null pointer exception)
 public class DatabaseManager <H extends OrmLiteSqliteOpenHelper> {
 
     private H helper;

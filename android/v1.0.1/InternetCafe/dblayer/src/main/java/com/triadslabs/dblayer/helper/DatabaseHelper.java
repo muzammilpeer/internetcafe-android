@@ -23,7 +23,7 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
-
+        //if you want to copy db
 //        DatabaseInitializer initializer = new DatabaseInitializer(context);
 //        try {
 //            initializer.createDatabase();
@@ -38,7 +38,7 @@ public class DatabaseHelper  extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
         try {
-            Log.e(DatabaseHelper.class.getName(), "onCreate");
+            Log.i(DatabaseHelper.class.getName(), "onCreate");
 
             TableUtils.createTable(connectionSource, User.class);
 
