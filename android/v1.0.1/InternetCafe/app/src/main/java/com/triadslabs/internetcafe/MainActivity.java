@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.triadslabs.dblayer.service.UserService;
 import com.triadslabs.internetcafe.actionbar.DrawerActionBarView;
 import com.triadslabs.internetcafe.adaptor.ExtendedGeneralArrayAdapter;
 import com.triadslabs.internetcafe.adaptor.GeneralArrayAdapter;
@@ -19,6 +20,7 @@ import com.triadslabs.internetcafe.fragment.ScheduleFragment;
 import com.triadslabs.internetcafe.listener.DrawerItemClickListener;
 import com.triadslabs.internetcafe.model.DrawerItem;
 import com.triadslabs.internetcafe.model.ExtendedItem;
+import com.triadslabs.networklayer.manager.NetworkManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,11 @@ public class MainActivity extends BaseActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        NetworkManager manager  = new NetworkManager();
+        UserService service = new UserService();
+        service.getUsername();
+
 
         initializeCustomActionBar(R.layout.actionbar_header, DrawerActionBarView.class, new DrawerItem(getString(R.string.menu_item_search), R.drawable.ic_action_search));
         showHideActionBar(true, true);
