@@ -3,10 +3,9 @@ package com.triadslabs.internetcafe.base;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.AdapterView;
-
+import android.support.v7.app.ActionBar;
 /**
  * Created by MuzammilPeer on 1/17/2015.
  */
@@ -29,11 +28,18 @@ abstract public class BaseListener  implements IBaseListener {
     }
 
 
-
+    /**
+     * @param currentFragment
+     * Copy constructor for keeping reference of current fragment
+     */
     protected BaseListener(Fragment currentFragment) {
         this.fragment = currentFragment;
     }
 
+    /**
+     * @param currentActivity
+     * Copy constructor for keeping reference of current activity
+     */
     protected BaseListener(Activity currentActivity) {
         this.activity = currentActivity;
     }

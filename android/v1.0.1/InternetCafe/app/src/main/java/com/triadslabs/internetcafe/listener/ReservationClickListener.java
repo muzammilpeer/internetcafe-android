@@ -4,27 +4,28 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.base.BaseListener;
 import com.triadslabs.internetcafe.fragment.DashboardFragment;
 import com.triadslabs.internetcafe.fragment.ReservationFragment;
+import com.triadslabs.internetcafe.listener.base.ViewClickListener;
 
 /**
  * Created by MuzammilPeer on 1/11/2015.
  */
-public class ReservationClickListener extends BaseListener {
-
+public class ReservationClickListener extends ViewClickListener {
+    /**
+     * @param currentFragment Copy constructor for keeping reference of current fragment
+     */
     public ReservationClickListener(Fragment currentFragment) {
         super(currentFragment);
     }
 
+
     /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
+     * @param v
+     * @required onClickAction is required method in child class
      */
     @Override
-    public void onClick(View v)
-    {
+    protected void onClickAction(View v) {
         if (this.getFragment() instanceof ReservationFragment) {
             ReservationFragment fragment = (ReservationFragment)this.getFragment();
 
@@ -37,6 +38,4 @@ public class ReservationClickListener extends BaseListener {
             }
         }
     }
-
-
 }
