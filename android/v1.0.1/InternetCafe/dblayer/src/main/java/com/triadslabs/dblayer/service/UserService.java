@@ -1,28 +1,41 @@
 package com.triadslabs.dblayer.service;
 
+import com.triadslabs.dblayer.dao.UserDAO;
+import com.triadslabs.dblayer.dbmodel.User;
+import com.triadslabs.dblayer.helper.DatabaseHelper;
+
 /**
  * Created by MuzammilPeer on 1/18/2015.
  */
-public class UserService implements IUserService {
+public class UserService extends BaseService implements IUserService {
 
-    private String username;
-
-    public String getUsername() {
-        return username;
+    public UserService(DatabaseHelper databaseHelper) {
+        super(databaseHelper);
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public User getByUsername(String username) throws ServiceException
+    {
+        User user;
+
+        try {
+            UserDAO userDao = new UserDAO(databaseHelper);
+            user = userDao.getByUsername("peer");
+        } catch (Exception ex) {
+            throw new ServiceException(ex.getMessage(), ex);
+        }
+
+        return user;
     }
 
     @Override
-    public String getUserById() throws ServiceException
-    {
-        String user;
+    public int addUser(User model) throws ServiceException {
+        int user;
+
         try {
-            user = getUsername();
-        } catch (Exception e) {
-            throw new ServiceException(e.getMessage(), e);
+            UserDAO userDao = new UserDAO(databaseHelper);
+            user = userDao.create(model);
+        } catch (Exception ex) {
+            throw new ServiceException(ex.getMessage(), ex);
         }
 
         return user;

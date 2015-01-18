@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.triadslabs.dblayer.dbmodel.User;
+import com.triadslabs.dblayer.service.IUserService;
+import com.triadslabs.dblayer.service.ServiceFactory;
 import com.triadslabs.dblayer.service.UserService;
 import com.triadslabs.internetcafe.actionbar.DrawerActionBarView;
 import com.triadslabs.internetcafe.adaptor.ExtendedGeneralArrayAdapter;
@@ -20,7 +23,7 @@ import com.triadslabs.internetcafe.fragment.ScheduleFragment;
 import com.triadslabs.internetcafe.listener.DrawerItemClickListener;
 import com.triadslabs.internetcafe.model.DrawerItem;
 import com.triadslabs.internetcafe.model.ExtendedItem;
-import com.triadslabs.networklayer.manager.NetworkManager;
+import com.triadslabs.internetcafe.utils.Log4a;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +43,6 @@ public class MainActivity extends BaseActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        NetworkManager manager  = new NetworkManager();
-        UserService service = new UserService();
-        service.getUsername();
-
 
         initializeCustomActionBar(R.layout.actionbar_header, DrawerActionBarView.class, new DrawerItem(getString(R.string.menu_item_search), R.drawable.ic_action_search));
         showHideActionBar(true, true);
@@ -77,6 +75,26 @@ public class MainActivity extends BaseActionBarActivity {
 
         if (savedInstanceState == null) {
             SelectItem(0, this, leftDataList.get(0), mLeftDrawerList);
+        }
+
+
+        //test db
+        initDB();
+    }
+
+    private  void initDB()
+    {
+        try {
+            IUserService service = (IUserService) ServiceFactory.getInstance().getService(UserService.class,getApplicationContext());
+            User user = new User("Bruno", "peer", "MySecretPassword",
+                    "email@gmail.com");
+
+            service.addUser(user);
+            User fetched =  service.getByUsername("peer");
+            Log4a.e("Data fetched",fetched.getUsername());
+        }catch (Exception e)
+        {
+            Log4a.e("db error",e.getLocalizedMessage());
         }
 
     }
