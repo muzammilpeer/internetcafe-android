@@ -62,7 +62,7 @@ public class DashboardFragment extends BaseFragment {
         lvDashboard.setAdapter(adDashboard);
 
         //at the end setup actionbar to stop crashing null selection
-        setupActionBarTabs();
+       // setupActionBarTabs();
     }
 
     protected  void initListener(View view)

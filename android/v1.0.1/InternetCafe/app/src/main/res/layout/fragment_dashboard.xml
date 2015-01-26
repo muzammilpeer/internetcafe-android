@@ -6,5 +6,6 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/wallet_hint_foreground_holo_light"
         android:id="@+id/lvDashboard" />
 </LinearLayout>

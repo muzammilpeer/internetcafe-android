@@ -44,8 +44,10 @@ public class MainActivity extends BaseActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initializeCustomActionBar(R.layout.actionbar_header, DrawerActionBarView.class, new DrawerItem(getString(R.string.menu_item_search), R.drawable.ic_action_search));
-        showHideActionBar(true, true);
+        initializeCustomToolbar(R.id.myToolbar, DrawerActionBarView.class, new DrawerItem(getString(R.string.menu_item_search), R.drawable.ic_action_search));
+        setupDrawer();
+
+//        showHideToolbar(true, true);
 
 //        generateLeftNavigationDrawerData();
         generateRightNavigationDrawerData();

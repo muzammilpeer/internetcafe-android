@@ -43,8 +43,8 @@ public class DrawerItemClickListener  extends ListViewOnItemClickListener {
                 if (parent.getId() == R.id.right_drawer) {
                     selectedListView = activity.getmRightDrawerList();
                 }
-                activity.initializeCustomActionBar(R.layout.actionbar_header1, DrawerActionBarView.class, new DrawerItem(activity.getString(R.string.menu_item_about), R.drawable.ic_action_search));
-                activity.showHideActionBar(true, true);
+                activity.initializeCustomToolbar(R.layout.actionbar_header1, DrawerActionBarView.class, new DrawerItem(activity.getString(R.string.menu_item_about), R.drawable.ic_action_search));
+                activity.showHideToolbar(true, true);
 
                 activity.SelectItem(position,view.getContext(),model,selectedListView);
             }
@@ -58,8 +58,8 @@ public class DrawerItemClickListener  extends ListViewOnItemClickListener {
                     if (parent.getId() == R.id.right_drawer) {
                         selectedListView = activity.getmRightDrawerList();
                     }
-                    activity.initializeCustomActionBar(R.layout.actionbar_header1, DrawerActionBarView.class, new DrawerItem(activity.getString(R.string.menu_item_about), R.drawable.ic_action_search));
-                    activity.showHideActionBar(true, true);
+//                    activity.initializeCustomActionBar(R.layout.actionbar_header1, DrawerActionBarView.class, new DrawerItem(activity.getString(R.string.menu_item_about), R.drawable.ic_action_search));
+//                    activity.showHideToolbar(true, true);
 
                     activity.SelectItem(position,view.getContext(),((ExtendedItem) model).getItem(),selectedListView);
                 }

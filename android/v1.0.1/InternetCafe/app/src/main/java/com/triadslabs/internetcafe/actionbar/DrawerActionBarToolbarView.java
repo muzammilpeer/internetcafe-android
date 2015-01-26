@@ -1,28 +1,44 @@
 package com.triadslabs.internetcafe.actionbar;
 
+import android.content.Context;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.triadslabs.internetcafe.MainActivity;
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.base.BaseActionBarView;
+import com.triadslabs.internetcafe.base.BaseActionBarToolbarView;
 import com.triadslabs.internetcafe.model.DrawerItem;
 
 import butterknife.InjectView;
 
 /**
- * Created by muzammilpeer on 1/5/15.
+ * Created by MuzammilPeer on 1/24/2015.
  */
-public class DrawerActionBarView extends BaseActionBarView implements Toolbar.OnMenuItemClickListener,View.OnClickListener {
+public class DrawerActionBarToolbarView extends BaseActionBarToolbarView implements Toolbar.OnMenuItemClickListener,View.OnClickListener {
 
-    @InjectView(R.id.tvActionbarTitle) TextView ItemName;
-//    @InjectView(R.id.ivActionbarButton) ImageButton leftIcon;
-//    @InjectView(R.id.ivActionbarSetting) ImageButton rightIcon;
+    @InjectView(R.id.tvActionbarTitle)
+    TextView ItemName;
+    @InjectView(R.id.ivActionbarButton)
+    ImageButton leftIcon;
+    @InjectView(R.id.ivActionbarSetting) ImageButton rightIcon;
 
     boolean isOpen;
+    public DrawerActionBarToolbarView(Context context) {
+        super(context);
+    }
+
+    public DrawerActionBarToolbarView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public DrawerActionBarToolbarView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
     @Override
     public void updateCell(Object model) {
@@ -41,7 +57,7 @@ public class DrawerActionBarView extends BaseActionBarView implements Toolbar.On
      */
     @Override
     public void onClick(View v) {
-        Log.e("Some message on click","testing here");
+        Log.e("Some message on click", "testing here");
         MainActivity activity = (MainActivity)v.getContext();
 
         if (v.getId() == R.id.ivActionbarButton) {
@@ -55,13 +71,13 @@ public class DrawerActionBarView extends BaseActionBarView implements Toolbar.On
 
     private void setListener()
     {
-//        leftIcon.setOnClickListener(this);
-//        rightIcon.setOnClickListener(this);
+        leftIcon.setOnClickListener(this);
+        rightIcon.setOnClickListener(this);
     }
 
     @Override
-    public void initializeViews(View view) {
-        super.initializeViews(view);
+    public void initializeViews() {
+        super.initializeViews();
         setListener();
 
 //        Toolbar toolbar = (Toolbar)view;

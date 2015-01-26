@@ -2,18 +2,17 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryColorDark</item>
-        <!-- disable window title -->
-        <item name="android:windowNoTitle">true</item>
-        <!-- disable window actionbar, cause u have an toolbar -->
-        <item name="windowActionBar">false</item>
+        <item name="android:statusBarColor">@color/primaryColorDark</item>
+
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
+
     <!--styling color for arrow-->
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@android:color/white</item>
     </style>
+
 </resources>

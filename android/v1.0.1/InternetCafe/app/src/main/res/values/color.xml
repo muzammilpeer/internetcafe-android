@@ -43,4 +43,8 @@
     <color name="spinnerColor">#f5f5f5</color>
     <color name="tab_indicator">#84202e</color>
     <color name="tabselectedColor">#CCcd9b96</color>
+
+
+    <color name="primaryColor">#e91e63</color>
+    <color name="primaryColorDark">#c2185b</color>
 </resources>

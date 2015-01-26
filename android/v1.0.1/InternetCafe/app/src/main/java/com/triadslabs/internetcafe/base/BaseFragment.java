@@ -50,7 +50,7 @@ abstract public class BaseFragment extends Fragment {
 
 
     public void showHideTabs(boolean isShow) {
-        getSupportActionBar().setNavigationMode(isShow ? ActionBar.NAVIGATION_MODE_TABS : ActionBar.NAVIGATION_MODE_STANDARD);
+//        getSupportActionBar().setNavigationMode(isShow ? ActionBar.NAVIGATION_MODE_TABS : ActionBar.NAVIGATION_MODE_STANDARD);
     }
 
 

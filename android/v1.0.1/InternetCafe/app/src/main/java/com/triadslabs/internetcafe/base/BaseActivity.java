@@ -6,11 +6,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.internetcafe.utils.ReflectionUtils;
 
 /**
  * Created by MuzammilPeer on 1/4/2015.
  */
 abstract public class BaseActivity extends ActionBarActivity {
+
+    protected BaseActionBarToolbarView currentToolBar;
 
     public BaseActivity() {
         super();
@@ -20,27 +23,60 @@ abstract public class BaseActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
-        showHideActionBar(false,false);
-        showHideTabs(false);
     }
 
-    public void showHideActionBar(boolean isShow,boolean isCustom)
+    public void initializeCustomToolbar(int rID,Class barClass,Object model)
     {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(isCustom ? false : isShow);
-        getSupportActionBar().setHomeButtonEnabled(isCustom ? false : isShow);
-        getSupportActionBar().setDisplayShowTitleEnabled(isCustom ? false : isShow);
-        getSupportActionBar().setDisplayShowCustomEnabled(isCustom);
+        BaseActionBarView customBar = (BaseActionBarView) ReflectionUtils.instantiate(barClass);
+        currentToolBar = (BaseActionBarToolbarView)this.findViewById(rID);
+        if (currentToolBar != null && customBar != null) {
+            customBar.initializeViews(currentToolBar);
+            customBar.updateCell(model);
+            setSupportActionBar(currentToolBar);
+//            currentToolBar.addView(actionbarView);
+//            //setup childrens views
+//            customBar.initializeViews(actionbarView);
+//            //update with model
+//            customBar.updateCell(model);
+//            setSupportActionBar(currentToolBar);
 
-
-        if (isShow)
-            getSupportActionBar().show();
-        else
-            getSupportActionBar().hide();
-
+        }
     }
+
+//    public void initializeCustomToolbar(View view,int rID,Class barClass,Object model)
+//    {
+//        BaseActionBarView customBar = (BaseActionBarView) ReflectionUtils.instantiate(barClass);
+//        View actionbarView = getLayoutInflater().inflate(rID,
+//                null);
+//        currentToolBar = (BaseActionBarToolbarView)view.findViewById(R.id.myToolbar);
+//        if (currentToolBar != null) {
+//            currentToolBar.updateCell(model);
+////            currentToolBar.addView(actionbarView);
+////            //setup childrens views
+////            customBar.initializeViews(actionbarView);
+////            //update with model
+////            customBar.updateCell(model);
+////            setSupportActionBar(currentToolBar);
+//
+//        }
+//    }
+//    public void showHideActionBar(boolean isShow,boolean isCustom)
+//    {
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(isCustom ? false : isShow);
+//        getSupportActionBar().setHomeButtonEnabled(isCustom ? false : isShow);
+//        getSupportActionBar().setDisplayShowTitleEnabled(isCustom ? false : isShow);
+//        getSupportActionBar().setDisplayShowCustomEnabled(isCustom);
+//
+//
+//        if (isShow)
+//            getSupportActionBar().show();
+//        else
+//            getSupportActionBar().hide();
+//
+//    }
+
+
 
     public  void  lockUnlockDrawer(boolean isOpen,int resourceID,DrawerLayout drawerLayout)
     {
