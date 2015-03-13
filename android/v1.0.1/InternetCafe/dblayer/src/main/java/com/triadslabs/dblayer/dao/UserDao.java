@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * Created by MuzammilPeer on 1/18/2015.
  */
-public class UserDAO extends GenericDAO {
+public class UserDao extends GenericDao {
 
     Dao<User, String> userDao;
 
-    public UserDAO(DatabaseHelper databaseHelper)
+    public UserDao(DatabaseHelper databaseHelper)
     {
         try {
             if (userDao == null) {

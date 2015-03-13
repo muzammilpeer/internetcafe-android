@@ -1,6 +1,6 @@
 package com.triadslabs.dblayer.service;
 
-import com.triadslabs.dblayer.dao.UserDAO;
+import com.triadslabs.dblayer.dao.UserDao;
 import com.triadslabs.dblayer.dbmodel.User;
 import com.triadslabs.dblayer.helper.DatabaseHelper;
 
@@ -18,7 +18,7 @@ public class UserService extends BaseService implements IUserService {
         User user;
 
         try {
-            UserDAO userDao = new UserDAO(databaseHelper);
+            UserDao userDao = new UserDao(databaseHelper);
             user = userDao.getByUsername("peer");
         } catch (Exception ex) {
             throw new ServiceException(ex.getMessage(), ex);
@@ -32,7 +32,7 @@ public class UserService extends BaseService implements IUserService {
         int user;
 
         try {
-            UserDAO userDao = new UserDAO(databaseHelper);
+            UserDao userDao = new UserDao(databaseHelper);
             user = userDao.create(model);
         } catch (Exception ex) {
             throw new ServiceException(ex.getMessage(), ex);
