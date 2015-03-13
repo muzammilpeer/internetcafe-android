@@ -3,6 +3,9 @@ package com.triadslabs.internetcafe.activity;
 import android.app.Application;
 import android.content.res.Configuration;
 
+import com.triadslabs.networklayer.manager.NetworkConfig;
+import com.triadslabs.networklayer.manager.NetworkManager;
+
 import java.util.Locale;
 /**
  * Created by MuzammilPeer on 12/21/2014.
@@ -19,7 +22,7 @@ public class ICApplication extends Application {
         return ourInstance;
     }
 
-    private ICApplication() {
+    public ICApplication() {
     }
 
     //application life cycle methods
@@ -28,6 +31,9 @@ public class ICApplication extends Application {
         super.onCreate();
         // initialize the singleton
         ourInstance = this;
+        //setup network layer
+        NetworkManager.setConfiguration(new NetworkConfig(this.getApplicationContext()));
+
     }
 
     @Override

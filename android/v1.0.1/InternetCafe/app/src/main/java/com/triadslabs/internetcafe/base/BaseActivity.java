@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.utils.reflection.*;
+import com.triadslabs.networklayer.enums.NetworkRequestEnum;
+import com.triadslabs.networklayer.protocols.IResponseProtocol;
+import com.triadslabs.utils.logger.Log4a;
+import com.triadslabs.utils.reflection.ReflectionUtil;
 
 /**
  * Created by MuzammilPeer on 1/4/2015.
  */
-abstract public class BaseActivity extends ActionBarActivity {
+abstract public class BaseActivity extends ActionBarActivity implements IResponseProtocol{
 
     protected BaseActionBarToolbarView currentToolBar;
 
@@ -96,4 +100,19 @@ abstract public class BaseActivity extends ActionBarActivity {
     public void showHideTabs(boolean isShow) {
         getSupportActionBar().setNavigationMode(isShow ? ActionBar.NAVIGATION_MODE_TABS : ActionBar.NAVIGATION_MODE_STANDARD);
     }
+
+    // Response Protocol Delegates
+
+    @Override
+    public void responseWithError(Exception error, NetworkRequestEnum requestType) {
+//        ca.hideProgress();
+        Log4a.e("Webservice error", error == null || error.getMessage() == null ? "Exception" : error.getMessage() + "Data fetched for Request URL = " + requestType.getRelativeUrl());
+    }
+
+    @Override
+    public void successWithData(Object data, NetworkRequestEnum requestType) {
+//        ca.hideProgress();
+        Log4a.e("Webservice success","Data fetched for Request URL = "+requestType.getRelativeUrl());
+    }
+
 }

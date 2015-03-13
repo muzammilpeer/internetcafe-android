@@ -10,6 +10,12 @@ public class NetworkConfig {
     private String baseURL;
     private boolean isBaseURL;
 
+    public NetworkConfig() {
+    }
+
+    public NetworkConfig(Context context) {
+        this.context = context;
+    }
 
     public Context getContext() {
         return context;

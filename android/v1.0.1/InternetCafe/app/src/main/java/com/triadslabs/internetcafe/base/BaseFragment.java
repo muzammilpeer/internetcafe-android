@@ -7,6 +7,9 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 
 import com.triadslabs.internetcafe.R;
+import com.triadslabs.networklayer.enums.NetworkRequestEnum;
+import com.triadslabs.networklayer.protocols.IResponseProtocol;
+import com.triadslabs.utils.logger.Log4a;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  * Created by MuzammilPeer on 1/4/2015.
  */
-abstract public class BaseFragment extends Fragment {
+abstract public class BaseFragment extends Fragment implements IResponseProtocol {
 
     private List localDataSource;
     public List getLocalDataSource() {
@@ -78,4 +81,17 @@ abstract public class BaseFragment extends Fragment {
         super.onDestroyView();
         ButterKnife.reset(this);
     }
+
+    @Override
+    public void responseWithError(Exception error, NetworkRequestEnum requestType) {
+//        ca.hideProgress();
+        Log4a.e("Webservice error", error == null || error.getMessage() == null ? "Exception" : error.getMessage() + "Data fetched for Request URL = " + requestType.getRelativeUrl());
+    }
+
+    @Override
+    public void successWithData(Object data, NetworkRequestEnum requestType) {
+//        ca.hideProgress();
+        Log4a.e("Webservice success","Data fetched for Request URL = "+requestType.getRelativeUrl());
+    }
+
 }

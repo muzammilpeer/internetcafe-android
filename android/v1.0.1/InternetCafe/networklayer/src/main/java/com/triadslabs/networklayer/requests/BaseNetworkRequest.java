@@ -1,6 +1,8 @@
 package com.triadslabs.networklayer.requests;
 
+import com.google.gson.JsonObject;
 import com.triadslabs.networklayer.protocols.IRequestProtocol;
+import com.triadslabs.utils.reflection.ReflectionUtil;
 
 
 /**
@@ -27,51 +29,51 @@ abstract public class BaseNetworkRequest implements IRequestProtocol {
         this.dataModel = model;
     }
 
-//    @Override
-//    public String getURL() throws Exception  {
-//        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-//        String className = ReflectionUtil.getClassName(getClass());
-//        throw new Exception("You must override method "+ methodName +" in "+ className);
-//    }
-//
-//    @Override
-//    public Boolean haveGetData() {
-//        // TODO Auto-generated method stub
-//        return false;
-//    }
-//
-//    @Override
-//    public String getData() throws Exception {
-//        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-//        String className = ReflectionUtil.getClassName(getClass());
-//        throw new Exception("You must override method "+ methodName +" in "+ className);
-//    }
-//
-//    @Override
-//    public Boolean havePostData() {
-//        // TODO Auto-generated method stub
-//        return false;
-//    }
-//
-//    @Override
-//    public JsonObject postData() throws Exception {
-//        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-//        String className = ReflectionUtil.getClassName(getClass());
-//        throw new Exception("You must override method "+ methodName +" in "+ className);
-//    }
-//
-//    @Override
-//    public Boolean haveImageData() {
-//        // TODO Auto-generated method stub
-//        return false;
-//    }
-//
-//    @Override
-//    public Object getImageData() throws Exception {
-//        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-//        String className = ReflectionUtil.getClassName(getClass());
-//        throw new Exception("You must override method "+ methodName +" in "+ className);
-//    }
+    @Override
+    public String getURL() throws Exception  {
+        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        String className = ReflectionUtil.getClassName(getClass());
+        throw new Exception("You must override method "+ methodName +" in "+ className);
+    }
+
+    @Override
+    public Boolean haveGetData() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public String getData() throws Exception {
+        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        String className = ReflectionUtil.getClassName(getClass());
+        throw new Exception("You must override method "+ methodName +" in "+ className);
+    }
+
+    @Override
+    public Boolean havePostData() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public JsonObject postData() throws Exception {
+        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        String className = ReflectionUtil.getClassName(getClass());
+        throw new Exception("You must override method "+ methodName +" in "+ className);
+    }
+
+    @Override
+    public Boolean haveImageData() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public Object getImageData() throws Exception {
+        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        String className = ReflectionUtil.getClassName(getClass());
+        throw new Exception("You must override method "+ methodName +" in "+ className);
+    }
 
 
 //    //utility methods
