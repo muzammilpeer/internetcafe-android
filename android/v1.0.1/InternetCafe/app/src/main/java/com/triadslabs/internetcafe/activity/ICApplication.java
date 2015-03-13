@@ -2,6 +2,7 @@ package com.triadslabs.internetcafe.activity;
 
 import android.app.Application;
 import android.content.res.Configuration;
+
 import java.util.Locale;
 /**
  * Created by MuzammilPeer on 12/21/2014.

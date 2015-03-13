@@ -23,7 +23,7 @@ import com.triadslabs.internetcafe.fragment.ScheduleFragment;
 import com.triadslabs.internetcafe.listener.DrawerItemClickListener;
 import com.triadslabs.internetcafe.model.DrawerItem;
 import com.triadslabs.internetcafe.model.ExtendedItem;
-import com.triadslabs.internetcafe.utils.Log4a;
+import com.triadslabs.utils.logger.Log4a;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +95,7 @@ public class MainActivity extends BaseActionBarActivity {
 
             service.addUser(user);
             User fetched =  service.getByUsername("peer");
-            Log4a.e("Data fetched",fetched.getUsername());
+            Log4a.e("Data fetched", fetched.getUsername());
         }catch (Exception e)
         {
             Log4a.e("db error",e.getLocalizedMessage());

@@ -4,9 +4,8 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.utils.ReflectionUtils;
+import com.triadslabs.utils.reflection.*;
 
 /**
  * Created by MuzammilPeer on 1/4/2015.
@@ -28,7 +27,7 @@ abstract public class BaseActivity extends ActionBarActivity {
 
     public void initializeCustomToolbar(int rID,Class barClass,Object model)
     {
-        BaseActionBarView customBar = (BaseActionBarView) ReflectionUtils.instantiate(barClass);
+        BaseActionBarView customBar = (BaseActionBarView) ReflectionUtil.instantiate(barClass);
         currentToolBar = (BaseActionBarToolbarView)this.findViewById(rID);
         if (currentToolBar != null && customBar != null) {
             customBar.initializeViews(currentToolBar);

@@ -1,4 +1,5 @@
 package com.triadslabs.internetcafe.view;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -11,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.utils.Log4a;
+import com.triadslabs.utils.logger.Log4a;
 
 /*
  * Copyright (C) 2012 Fabian Leon Ortega <http://orleonsoft.blogspot.com/,

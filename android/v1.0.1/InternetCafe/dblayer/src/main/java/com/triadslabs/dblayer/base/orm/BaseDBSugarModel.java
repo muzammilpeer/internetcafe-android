@@ -1,7 +1,7 @@
 package com.triadslabs.dblayer.base.orm;
 
-import com.triadslabs.dblayer.base.IDBBaseModel;
 import com.orm.SugarRecord;
+import com.triadslabs.dblayer.base.IDBBaseModel;
 
 import java.lang.reflect.Field;
 import java.util.List;

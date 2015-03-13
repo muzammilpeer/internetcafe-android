@@ -5,8 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.model.ExtendedItem;
 import com.triadslabs.internetcafe.base.BaseItemView;
+import com.triadslabs.internetcafe.model.ExtendedItem;
 
 import java.util.List;
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.triadslabs.internetcafe.R;
 import com.triadslabs.internetcafe.base.BaseFragment;
-import com.triadslabs.internetcafe.utils.GestureUtils;
+import com.triadslabs.utils.gesture.GestureUtil;
 
 /**
  * Created by muzammilpeer on 1/9/15.
@@ -97,12 +97,12 @@ public class ScheduleFragment extends BaseFragment {
                     if (current instanceof Button) {
                         Button b = (Button) current;
 
-                        if (!GestureUtils.isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
+                        if (!GestureUtil.isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
                                 b.getBottom())) {
                             b.getBackground().setState(defaultStates);
                         }
 
-                        if (GestureUtils.isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
+                        if (GestureUtil.isPointWithin(x, y, b.getLeft(), b.getRight(), b.getTop(),
                                 b.getBottom())) {
                             b.getBackground().setState(STATE_PRESSED);
                             if (b != mLastButton) {

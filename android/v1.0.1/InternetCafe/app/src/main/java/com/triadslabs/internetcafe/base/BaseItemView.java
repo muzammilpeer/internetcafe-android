@@ -1,14 +1,14 @@
 package com.triadslabs.internetcafe.base;
 
-import android.view.View;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.triadslabs.internetcafe.R;
-import com.triadslabs.internetcafe.utils.ReflectionUtils;
+import com.triadslabs.utils.reflection.ReflectionUtil;
 
 
 /**
@@ -27,7 +27,7 @@ public class BaseItemView extends RelativeLayout {
         //Generate Childs views and attach them to parent view of cellview
         View baseView = LayoutInflater.from(parent.getContext()).inflate(layoutResourceID , itemView, true);
         //Cell Reference and cell views setup is called to fetch views from xml
-        itemView.bCell = (BaseCell)ReflectionUtils.instantiate(cell);
+        itemView.bCell = (BaseCell) ReflectionUtil.instantiate(cell);
         itemView.bCell.initializeViews(baseView);
 
         return itemView;
