@@ -160,10 +160,10 @@ public class DashboardFragment extends BaseFragment {
         PaymentResponseModel obj = (PaymentResponseModel) GsonUtil.getObjectFromJsonObject(data, PaymentResponseModel.class);
         Log4a.e("Data Fetched ", obj.getMessage());
 
-        Intent returnIntent = new Intent(this, SecondActivity.class);
-        returnIntent.putExtra("result", modelRequest);
-        setResult(IntentEnum.RESULT_OK.getIntentCode(), returnIntent);
-        finish();
+//        Intent returnIntent = new Intent(this, SecondActivity.class);
+//        returnIntent.putExtra("result", modelRequest);
+//        setResult(IntentEnum.RESULT_OK.getIntentCode(), returnIntent);
+//        finish();
 
     }
 }
